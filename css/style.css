@@ -278,3 +278,26 @@ footer{border-top:1px solid var(--border); background:var(--bg-elev)}
   *{animation:none !important; transition:none !important}
   html{scroll-behavior:auto}
 }
+/* Добавим в конец файла */
+
+/* Demo buttons styles */
+.demo-buttons {
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+}
+
+.demo-buttons h3 {
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+@media (max-width: 768px) {
+  .demo-buttons .row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .demo-buttons .btn {
+    justify-content: center;
+  }
+}
