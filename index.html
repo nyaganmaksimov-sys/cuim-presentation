@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ЦУИМ — Локальная цифровая экосистема | Презентация для инвесторов</title>
+    <title>ЦУИМ - Локальная цифровая экосистема</title>
     <style>
         :root {
             --orange: #FF6B00;
@@ -11,6 +11,7 @@
             --light-gray: #f5f5f5;
             --dark: #333;
             --white: #fff;
+            --green: #2e7d32;
         }
         * {
             margin: 0;
@@ -22,409 +23,679 @@
             background-color: var(--white);
             color: var(--dark);
             line-height: 1.6;
+            scroll-behavior: smooth;
         }
-        .container {
+
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, var(--blue), #002d6d);
+            color: white;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .logo-icon {
+            font-size: 2.5em;
+            background: var(--orange);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .logo-text h1 {
+            font-size: 1.8em;
+            margin: 0;
+        }
+        .logo-text p {
+            font-size: 0.9em;
+            opacity: 0.9;
+            margin: 0;
+        }
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .nav-menu a:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+        .nav-menu a.active {
+            background: var(--orange);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--orange), var(--blue));
+            color: white;
+            padding: 180px 0 100px 0;
+            text-align: center;
+            margin-top: 80px;
+        }
+        .hero-container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
-
-        /* Header & Hero */
-        header {
-            background: linear-gradient(135deg, var(--orange), var(--blue));
-            color: var(--white);
-            padding: 80px 20px;
-            text-align: center;
-            margin-bottom: 50px;
-        }
-        header h1 {
-            font-size: 3em;
-            margin-bottom: 15px;
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
             font-weight: 700;
         }
-        header p {
+        .hero p {
             font-size: 1.3em;
-            margin-bottom: 10px;
+            margin-bottom: 30px;
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
         }
-        .header-subtitle {
-            font-style: italic;
-            opacity: 0.9;
-            margin-top: 20px;
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: inline-block;
+            text-align: center;
+        }
+        .btn-primary {
+            background: white;
+            color: var(--blue);
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        .btn-secondary:hover {
+            background: white;
+            color: var(--blue);
+            transform: translateY(-3px);
         }
 
         /* Sections */
         section {
-            padding: 60px 0;
-            border-bottom: 1px solid #eee;
+            padding: 100px 0;
         }
-        section:last-of-type {
-            border-bottom: none;
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
         h2 {
             color: var(--blue);
-            font-size: 2.2em;
-            margin-bottom: 30px;
+            font-size: 2.5em;
+            margin-bottom: 50px;
             text-align: center;
-            border-bottom: 2px solid var(--orange);
-            padding-bottom: 10px;
+            position: relative;
         }
-        h3 {
-            color: var(--orange);
-            font-size: 1.6em;
-            margin: 25px 0 15px 0;
-        }
-        h4 {
-            margin: 20px 0 10px 0;
-            font-style: italic;
-            color: var(--dark);
-        }
-        p {
-            margin-bottom: 15px;
-            font-size: 1.1em;
-        }
-        ul, ol {
-            margin-left: 20px;
-            margin-bottom: 20px;
-        }
-        li {
-            margin-bottom: 8px;
-            font-size: 1.1em;
+        h2:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--orange);
+            margin: 15px auto;
+            border-radius: 2px;
         }
 
-        /* Highlights */
-        .highlight {
-            background-color: #fff3cd;
-            padding: 8px 12px;
-            border-radius: 5px;
-            font-weight: 600;
-            color: var(--dark);
-            display: inline-block;
-            margin: 5px 0;
-        }
-        .accent {
-            color: var(--orange);
-            font-weight: bold;
-        }
-
-        /* Cards for Business Model */
-        .cards-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 25px;
-            justify-content: center;
-            margin-top: 30px;
-        }
-        .card {
+        /* Audience Sections */
+        .audience-section {
             background: var(--light-gray);
-            border-left: 5px solid var(--orange);
-            border-radius: 8px;
-            padding: 25px;
-            flex: 1 1 300px;
-            max-width: 350px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 20px;
+            padding: 50px;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
             transition: transform 0.3s ease;
         }
-        .card:hover {
+        .audience-section:hover {
             transform: translateY(-5px);
         }
-        .card h3 {
-            margin-top: 0;
-            color: var(--blue);
-        }
-
-        /* Financial Table */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 25px 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 12px 15px;
-            text-align: left;
-        }
-        th {
-            background-color: var(--blue);
-            color: var(--white);
-            font-weight: 600;
-        }
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        tr:hover {
-            background-color: #f1f1f1;
-        }
-
-        /* Demo Buttons */
-        .demo-buttons {
+        .audience-header {
             display: flex;
-            justify-content: center;
+            align-items: center;
             gap: 20px;
-            flex-wrap: wrap;
-            margin: 30px 0;
+            margin-bottom: 30px;
+        }
+        .audience-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--orange), var(--blue));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            color: white;
+        }
+        .audience-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        .audience-features {
+            list-style: none;
+        }
+        .audience-features li {
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .audience-features li:before {
+            content: '✓';
+            color: var(--green);
+            font-weight: bold;
+            background: #e8f5e9;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .demo-preview {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .demo-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2em;
+            font-style: italic;
         }
         .demo-btn {
-            display: inline-block;
-            padding: 15px 30px;
-            background: linear-gradient(135deg, var(--orange), var(--blue));
+            background: var(--orange);
             color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            text-align: center;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            min-width: 200px;
         }
         .demo-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+            background: #e55a00;
+            transform: translateY(-2px);
         }
 
-        /* Risk Levels */
-        .risk-level {
-            padding: 5px 10px;
-            border-radius: 4px;
-            font-weight: bold;
-            display: inline-block;
+        /* Platform Features */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
         }
-        .high {
-            background: #ffebee;
-            color: #b71c1c;
+        .feature-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
         }
-        .medium {
-            background: #fff3e0;
-            color: #e65100;
+        .feature-card:hover {
+            transform: translateY(-10px);
         }
-        .low {
-            background: #e8f5e9;
-            color: #2e7d32;
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--orange), var(--blue));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2em;
+            color: white;
+        }
+        .feature-card h3 {
+            color: var(--blue);
+            margin-bottom: 15px;
         }
 
         /* CTA Section */
         .cta-section {
-            text-align: center;
-            padding: 80px 20px;
             background: linear-gradient(135deg, var(--blue), var(--orange));
             color: white;
-            border-radius: 10px;
+            text-align: center;
+            padding: 80px 0;
+            border-radius: 20px;
             margin: 50px 0;
         }
         .cta-section h2 {
             color: white;
-            border-bottom: 2px solid white;
         }
-        .cta-btn {
-            display: inline-block;
-            margin-top: 25px;
-            padding: 18px 40px;
-            background-color: white;
-            color: var(--blue);
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 1.2em;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-        .cta-btn:hover {
-            background-color: var(--light-gray);
-            transform: scale(1.05);
+        .cta-section h2:after {
+            background: white;
         }
 
         /* Footer */
         footer {
-            margin-top: 60px;
-            padding: 30px 20px;
+            background: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
             text-align: center;
-            color: #666;
-            font-style: italic;
-            border-top: 1px solid #eee;
+        }
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer-links a:hover {
+            color: var(--orange);
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            header h1 {
-                font-size: 2.2em;
-            }
-            header p {
-                font-size: 1.1em;
-            }
-            h2 {
-                font-size: 1.8em;
-            }
-            .demo-buttons {
+            .header-container {
                 flex-direction: column;
-                align-items: center;
+                height: auto;
+                padding: 15px 20px;
             }
-            .demo-btn {
-                width: 80%;
+            .nav-menu {
+                margin-top: 15px;
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .hero {
+                padding: 150px 0 60px 0;
+            }
+            .hero h1 {
+                font-size: 2.5em;
+            }
+            .audience-content {
+                grid-template-columns: 1fr;
+            }
+            .audience-section {
+                padding: 30px;
+            }
+            .features-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Header -->
     <header>
-        <div class="container">
-            <h1>ЦУИМ</h1>
-            <p>Локальная цифровая экосистема для малого бизнеса</p>
-            <p>Маркетплейс • Доска объявлений • Оптовая торговля • Курьерская служба</p>
-            <p class="header-subtitle">Инвестируйте в будущее локальной торговли. Высокий потенциал роста и социальная значимость.</p>
+        <div class="header-container">
+            <div class="logo">
+                <div class="logo-icon">Ц</div>
+                <div class="logo-text">
+                    <h1>ЦУИМ</h1>
+                    <p>Локальная экосистема</p>
+                </div>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#buyer" class="active">Покупателям</a></li>
+                    <li><a href="#seller-retail">Продавцам</a></li>
+                    <li><a href="#seller-wholesale">Оптовикам</a></li>
+                    <li><a href="#courier">Курьерам</a></li>
+                    <li><a href="#about">О платформе</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
-    <div class="container">
-        <section id="overview">
-            <h2>Инвестиционная привлекательность</h2>
-            <p>Проект <span class="accent">ЦУИМ</span> — это не просто платформа, это <strong>замкнутая экосистема</strong>, создающая новую рыночную среду для малого бизнеса, самозанятых и покупателей в одном регионе. Мы объединяем четыре ключевых сервиса, что создает синергетический эффект и устойчивую бизнес-модель.</p>
-            
-            <div class="cards-container">
-                <div class="card">
-                    <h3>ЦУИМ.Маркет</h3>
-                    <p><strong>Розничный маркетплейс</strong> для товаров местного производства: фермерская продукция, handmade, одежда, техника.</p>
-                    <p><span class="highlight">Монетизация:</span> Комиссия 10-15%, премиум-размещение.</p>
-                </div>
-                <div class="card">
-                    <h3>ЦУИМ.Доска</h3>
-                    <p><strong>Доска объявлений</strong> для частных лиц и бизнеса. Техника, недвижимость, транспорт, услуги.</p>
-                    <p><span class="highlight">Монетизация:</span> Платные премиум-объявления и поднятия.</p>
-                </div>
-                <div class="card">
-                    <h3>ЦУИМ.Опт</h3>
-                    <p><strong>B2B-платформа</strong> для оптовых закупок. Сырье, упаковка, оборудование для малого бизнеса.</p>
-                    <p><span class="highlight">Монетизация:</span> Комиссия 5%, премиум-подписки.</p>
-                </div>
-                <div class="card">
-                    <h3>ЦУИМ.Доставка</h3>
-                    <p><strong>Собственная логистика</strong>. Обеспечивает быструю и надежную доставку по всему городу.</p>
-                    <p><span class="highlight">Монетизация:</span> Плата за доставку, комиссия с продавцов.</p>
-                </div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <h1>ЦУИМ — локальная цифровая экосистема</h1>
+            <p>Объединяем малый бизнес, производителей и покупателей в одном месте. Быстро, надежно, по-человечески.</p>
+            <div class="hero-buttons">
+                <a href="#buyer" class="btn btn-primary">Начать покупки</a>
+                <a href="#seller-retail" class="btn btn-secondary">Начать продавать</a>
             </div>
-        </section>
-
-        <section id="demo">
-            <h2>Демонстрация платформы</h2>
-            <p>Ознакомьтесь с интерфейсами ключевых пользователей платформы. Это интерактивные макеты, показывающие удобство и продуманность системы.</p>
-            <div class="demo-buttons">
-                <a href="#buyer" class="demo-btn">Личный кабинет Покупателя</a>
-                <a href="#seller-retail" class="demo-btn">Кабинет Продавца (Розница)</a>
-                <a href="#seller-wholesale" class="demo-btn">Кабинет Продавца (Опт)</a>
-                <a href="#courier" class="demo-btn">Приложение Курьера</a>
-            </div>
-            <p style="text-align: center; font-style: italic;">Нажмите на кнопки выше, чтобы увидеть демо-режимы (функциональность будет реализована здесь же, на странице).</p>
-        </section>
-
-        <section id="finance">
-            <h2>Финансовые прогнозы</h2>
-            <p>Мы представляем реалистичный, консервативный финансовый прогноз для города-пилота (Барнаул) на первые 12 месяцев. Прогноз основан на глубоком анализе локального рынка.</p>
-
-            <h3>Ключевые финансовые показатели (Реалистичный сценарий)</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Показатель</th>
-                        <th>Значение (руб.)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Совокупный оборот платформы за 12 месяцев</td>
-                        <td><strong>51 900 000</strong></td>
-                    </tr>
-                    <tr>
-                        <td>Валовый доход платформы (комиссии, доставка, премиум)</td>
-                        <td><strong>1 980 000</strong></td>
-                    </tr>
-                    <tr>
-                        <td>Операционные расходы</td>
-                        <td><strong>1 620 000</strong></td>
-                    </tr>
-                    <tr>
-                        <td>Чистая прибыль за 12-й месяц</td>
-                        <td><strong>120 000</strong></td>
-                    </tr>
-                    <tr>
-                        <td><strong>ROI (Окупаемость инвестиций)</strong></td>
-                        <td><strong class="accent">7.4%</strong></td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <h3>Выход на точку безубыточности</h3>
-            <p>При достижении оборота в <span class="highlight">~2.3 млн руб./мес.</span> проект становится самоокупаемым. По нашему реалистичному прогнозу это произойдет на <span class="accent">6-й месяц</span> работы.</p>
-        </section>
-
-        <section id="risks">
-            <h2>Анализ рисков и стратегия их минимизации</h2>
-            <p>Мы трезво оцениваем потенциальные challenges и имеем четкий план по их преодолению.</p>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Потенциальный риск</th>
-                        <th>Уровень</th>
-                        <th>Наша стратегия минимизации</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Низкий первоначальный спрос</td>
-                        <td><span class="risk-level high">Высокий</span></td>
-                        <td>Агрессивный локальный маркетинг, программа лояльности для первых продавцов и покупателей, фокус на уникальных локальных товарах.</td>
-                    </tr>
-                    <tr>
-                        <td>Конкуренция с федеральными платформами</td>
-                        <td><span class="risk-level medium">Средний</span></td>
-                        <td>Упор на премиум-сервис, скорость доставки, доверительные отношения и поддержку местного производителя. Мы не конкурируем по цене, мы конкурируем по ценности.</td>
-                    </tr>
-                    <tr>
-                        <td>Логистические сложности</td>
-                        <td><span class="risk-level medium">Средний</span></td>
-                        <td>Построение собственной гибкой курьерской службы, партнерство с проверенными локальными перевозчиками, внедрение современных систем трекинга.</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <section id="next-steps">
-            <h2>Дорожная карта и план масштабирования</h2>
-            <p>Наш путь от запуска в одном городе до регионального лидера.</p>
-            <ol>
-                <li><strong>Q1 2026:</strong> Запуск MVP в г. Барнаул. Привлечение первых 50 продавцов.</li>
-                <li><strong>Q2 2026:</strong> Запуск 3+ пунктов выдачи заказов. Формирование штата из 5 курьеров.</li>
-                <li><strong>H2 2026:</strong> Выход на точку безубыточности. Экспансия в 2-3 города Алтайского края.</li>
-                <li><strong>2027:</strong> Разработка и запуск модели франшизы для масштабирования в другие регионы РФ.</li>
-            </ol>
-        </section>
-
-        <div class="cta-section">
-            <h2>Готовы стать частью локальной революции?</h2>
-            <p>Инвестируя в ЦУИМ, вы вкладываетесь не только в прибыльный бизнес, но и в развитие малого предпринимательства в регионах России.</p>
-            <p>Давайте создадим будущее вместе.</p>
-            <a href="mailto:invest@cuim.ru?subject=Инвестирование в проект ЦУИМ" class="cta-btn">Обсудить инвестиции</a>
         </div>
-    </div>
+    </section>
 
+    <!-- Buyer Section -->
+    <section id="buyer">
+        <div class="section-container">
+            <h2>Для покупателей</h2>
+            <div class="audience-section">
+                <div class="audience-header">
+                    <div class="audience-icon">🛒</div>
+                    <div>
+                        <h3 style="color: var(--blue); margin: 0; font-size: 1.8em;">ЦУИМ.Маркет</h3>
+                        <p style="color: #666; margin: 5px 0 0 0;">Покупайте у местных производителей</p>
+                    </div>
+                </div>
+                <div class="audience-content">
+                    <div>
+                        <h4 style="color: var(--orange); margin-bottom: 20px;">Почему покупать у нас выгодно?</h4>
+                        <ul class="audience-features">
+                            <li>Свежие товары от местных производителей</li>
+                            <li>Быстрая доставка в день заказа</li>
+                            <li>Прямой контакт с продавцами</li>
+                            <li>Уникальные handmade-товары</li>
+                            <li>Поддержка местного бизнеса</li>
+                            <li>Гарантия качества и возврата</li>
+                        </ul>
+                        <div style="margin-top: 30px;">
+                            <button class="demo-btn" onclick="showDemo('buyer')">Посмотреть демо-кабинет</button>
+                        </div>
+                    </div>
+                    <div class="demo-preview">
+                        <div class="demo-image">Демо-интерфейс покупателя</div>
+                        <p>Удобный поиск, быстрый заказ, отслеживание доставки</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seller Retail Section -->
+    <section id="seller-retail" style="background: var(--light-gray);">
+        <div class="section-container">
+            <h2>Для продавцов маркетплейса</h2>
+            <div class="audience-section" style="background: white;">
+                <div class="audience-header">
+                    <div class="audience-icon">🏪</div>
+                    <div>
+                        <h3 style="color: var(--blue); margin: 0; font-size: 1.8em;">ЦУИМ.Маркет</h3>
+                        <p style="color: #666; margin: 5px 0 0 0;">Продавайте свои товары онлайн</p>
+                    </div>
+                </div>
+                <div class="audience-content">
+                    <div>
+                        <h4 style="color: var(--orange); margin-bottom: 20px;">Преимущества для продавцов</h4>
+                        <ul class="audience-features">
+                            <li>Низкая комиссия от 10%</li>
+                            <li>Готовая аудитория покупателей</li>
+                            <li>Встроенная система доставки</li>
+                            <li>Простой личный кабинет</li>
+                            <li>Поддержка 24/7</li>
+                            <li>Маркетинговое продвижение</li>
+                        </ul>
+                        <div style="margin-top: 30px;">
+                            <button class="demo-btn" onclick="showDemo('seller-retail')">Посмотреть демо-кабинет</button>
+                        </div>
+                    </div>
+                    <div class="demo-preview">
+                        <div class="demo-image">Демо-кабинет продавца</div>
+                        <p>Управление товарами, заказами и статистикой</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seller Wholesale Section -->
+    <section id="seller-wholesale">
+        <div class="section-container">
+            <h2>Для оптовых продавцов</h2>
+            <div class="audience-section">
+                <div class="audience-header">
+                    <div class="audience-icon">📦</div>
+                    <div>
+                        <h3 style="color: var(--blue); margin: 0; font-size: 1.8em;">ЦУИМ.Опт</h3>
+                        <p style="color: #666; margin: 5px 0 0 0;">B2B-платформа для оптовой торговли</p>
+                    </div>
+                </div>
+                <div class="audience-content">
+                    <div>
+                        <h4 style="color: var(--orange); margin-bottom: 20px;">Возможности для оптовиков</h4>
+                        <ul class="audience-features">
+                            <li>Комиссия всего 5% от продаж</li>
+                            <li>Работа только с проверенными бизнесами</li>
+                            <li>Минимальный заказ от 5 000 рублей</li>
+                            <li>Собственная логистика для крупных партий</li>
+                            <li>Интеграция с системами учёта</li>
+                            <li>Персональный менеджер</li>
+                        </ul>
+                        <div style="margin-top: 30px;">
+                            <button class="demo-btn" onclick="showDemo('seller-wholesale')">Посмотреть демо-кабинет</button>
+                        </div>
+                    </div>
+                    <div class="demo-preview">
+                        <div class="demo-image">Демо-кабинет оптовика</div>
+                        <p>Управление крупными заказами и поставками</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courier Section -->
+    <section id="courier" style="background: var(--light-gray);">
+        <div class="section-container">
+            <h2>Для курьерской службы</h2>
+            <div class="audience-section" style="background: white;">
+                <div class="audience-header">
+                    <div class="audience-icon">🚚</div>
+                    <div>
+                        <h3 style="color: var(--blue); margin: 0; font-size: 1.8em;">ЦУИМ.Доставка</h3>
+                        <p style="color: #666; margin: 5px 0 0 0;">Надёжная логистика для всех</p>
+                    </div>
+                </div>
+                <div class="audience-content">
+                    <div>
+                        <h4 style="color: var(--orange); margin-bottom: 20px;">Работа в нашей службе доставки</h4>
+                        <ul class="audience-features">
+                            <li>Стабильный поток заказов</li>
+                            <li>Гибкий график работы</li>
+                            <li>Поддержка мобильного приложения</li>
+                            <li>Прозрачная система оплаты</li>
+                            <li>Страхование и поддержка</li>
+                            <li>Карьерный рост</li>
+                        </ul>
+                        <div style="margin-top: 30px;">
+                            <button class="demo-btn" onclick="showDemo('courier')">Посмотреть демо-приложение</button>
+                        </div>
+                    </div>
+                    <div class="demo-preview">
+                        <div class="demo-image">Демо-приложение курьера</div>
+                        <p>Маршрутизация, навигация, управление доставками</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Platform Features -->
+    <section id="about">
+        <div class="section-container">
+            <h2>Возможности платформы</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🛍️</div>
+                    <h3>Маркетплейс</h3>
+                    <p>Продажа товаров местного производства с быстрой доставкой</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📋</div>
+                    <h3>Доска объявлений</h3>
+                    <p>Бесплатное размещение объявлений для частных лиц и бизнеса</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏭</div>
+                    <h3>Оптовая торговля</h3>
+                    <p>B2B-платформа для поставщиков и розничных покупателей</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Доставка</h3>
+                    <p>Собственная курьерская служба с доставкой в день заказа</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section>
+        <div class="section-container">
+            <div class="cta-section">
+                <h2>Готовы присоединиться?</h2>
+                <p style="font-size: 1.2em; margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    Станьте частью локальной экосистемы уже сегодня
+                </p>
+                <div class="hero-buttons">
+                    <a href="#buyer" class="btn btn-primary">Начать покупать</a>
+                    <a href="#seller-retail" class="btn btn-secondary">Начать продавать</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
-        <div class="container">
-            <p>Презентация проекта ЦУИМ | Для инвесторов</p>
-            <p>Бизнес-план v.1.6 | Ноябрь 2025</p>
+        <div class="footer-container">
+            <div class="logo" style="justify-content: center; margin-bottom: 30px;">
+                <div class="logo-icon">Ц</div>
+                <div class="logo-text">
+                    <h1>ЦУИМ</h1>
+                    <p>Локальная экосистема</p>
+                </div>
+            </div>
+            <div class="footer-links">
+                <a href="#buyer">Покупателям</a>
+                <a href="#seller-retail">Продавцам</a>
+                <a href="#seller-wholesale">Оптовикам</a>
+                <a href="#courier">Курьерам</a>
+                <a href="#about">О платформе</a>
+                <a href="#">Контакты</a>
+            </div>
+            <p style="opacity: 0.7; margin-top: 30px;">&copy; 2025 ЦУИМ. Локальная цифровая экосистема</p>
         </div>
     </footer>
 
     <script>
-        // Простой скрипт для плавной прокрутки к демо-секциям (заглушка, так как самих демо-режимов в коде нет)
-        document.querySelectorAll('.demo-btn').forEach(button => {
-            button.addEventListener('click', function(e) {
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const targetId = this.getAttribute('href');
-                // В реальной реализации здесь будет код для отображения соответствующего демо-интерфейса
-                alert(`В полной версии презентации здесь будет запущен демо-режим: ${targetId}`);
-                // Плавная прокрутка к элементу (если бы он был)
-                // document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Update active navigation link on scroll
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Demo showcase function
+        function showDemo(type) {
+            const demos = {
+                'buyer': 'Демо-кабинет покупателя',
+                'seller-retail': 'Демо-кабинет продавца маркетплейса',
+                'seller-wholesale': 'Демо-кабинет оптового продавца',
+                'courier': 'Демо-приложение курьера'
+            };
+            alert(`Запуск демо-режима: ${demos[type]}\n\nВ полной версии здесь будет открыт интерактивный демо-интерфейс.`);
+        }
+
+        // Add some interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add fade-in animation to sections
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Apply initial styles and observe sections
+            document.querySelectorAll('.audience-section, .feature-card').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
             });
         });
     </script>
