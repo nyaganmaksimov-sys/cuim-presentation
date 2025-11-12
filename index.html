@@ -40,49 +40,53 @@
             border-bottom: 1px solid #eee;
         }
         .header-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 80px;
+            height: 70px;
         }
         .logo {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
             text-decoration: none;
             color: var(--dark);
         }
         .logo-img {
-            height: 50px;
+            height: 40px;
             width: auto;
         }
-        .logo-text h1 {
-            font-size: 1.8em;
-            margin: 0;
+        .logo-text {
+            font-weight: 700;
+            font-size: 1.4em;
             color: var(--blue);
         }
-        .logo-text p {
-            font-size: 0.9em;
-            opacity: 0.8;
-            margin: 0;
-            color: var(--text-light);
+
+        /* Main Navigation */
+        .main-nav {
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 25px;
+            gap: 5px;
             align-items: center;
+            margin: 0 20px;
         }
         .nav-menu a {
             color: var(--dark);
             text-decoration: none;
             font-weight: 500;
-            padding: 8px 15px;
+            padding: 8px 16px;
             border-radius: 8px;
             transition: all 0.3s ease;
+            font-size: 0.95em;
+            white-space: nowrap;
         }
         .nav-menu a:hover {
             background: var(--light-blue);
@@ -92,6 +96,38 @@
             background: var(--orange);
             color: white;
         }
+
+        /* Demo Sites Switcher */
+        .demo-switcher {
+            display: flex;
+            background: var(--light-gray);
+            border-radius: 10px;
+            padding: 4px;
+            margin-right: 20px;
+            border: 1px solid #e0e0e0;
+        }
+        .demo-btn {
+            padding: 8px 16px;
+            border: none;
+            background: none;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text-light);
+            white-space: nowrap;
+        }
+        .demo-btn:hover {
+            background: rgba(255, 107, 0, 0.1);
+            color: var(--orange);
+        }
+        .demo-btn.active {
+            background: var(--orange);
+            color: white;
+        }
+
+        /* Investor Button */
         .investor-btn {
             background: linear-gradient(135deg, var(--orange), #e55a00);
             color: white;
@@ -105,19 +141,31 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            font-size: 0.95em;
+            white-space: nowrap;
         }
         .investor-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(255, 107, 0, 0.3);
         }
 
+        /* Mobile menu button */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
         /* Hero Section */
         .hero {
             background: linear-gradient(135deg, var(--light-blue), var(--white));
             color: var(--dark);
-            padding: 160px 0 80px 0;
+            padding: 140px 0 60px 0;
             text-align: center;
-            margin-top: 80px;
+            margin-top: 70px;
         }
         .hero-container {
             max-width: 1200px;
@@ -280,7 +328,7 @@
             font-size: 1.1em;
             font-style: italic;
         }
-        .demo-btn {
+        .demo-section-btn {
             background: var(--orange);
             color: white;
             padding: 12px 25px;
@@ -290,7 +338,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-        .demo-btn:hover {
+        .demo-section-btn:hover {
             background: #e55a00;
             transform: translateY(-2px);
         }
@@ -390,24 +438,67 @@
         }
 
         /* Responsive */
-        @media (max-width: 768px) {
+        @media (max-width: 1200px) {
             .header-container {
-                flex-direction: column;
-                height: auto;
-                padding: 15px 20px;
-                gap: 15px;
+                max-width: 100%;
             }
             .nav-menu {
-                margin-top: 10px;
+                gap: 2px;
+                margin: 0 10px;
+            }
+            .nav-menu a {
+                padding: 8px 12px;
+                font-size: 0.9em;
+            }
+            .demo-switcher {
+                margin-right: 10px;
+            }
+            .demo-btn {
+                padding: 8px 12px;
+                font-size: 0.85em;
+            }
+        }
+
+        @media (max-width: 968px) {
+            .main-nav {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                padding: 20px;
+                box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+                flex-direction: column;
                 gap: 15px;
-                flex-wrap: wrap;
+            }
+            .main-nav.active {
+                display: flex;
+            }
+            .nav-menu {
+                flex-direction: column;
+                gap: 10px;
+                margin: 0;
+                width: 100%;
+            }
+            .nav-menu a {
+                padding: 12px 16px;
+                text-align: center;
+                border: 1px solid #f0f0f0;
+            }
+            .demo-switcher {
+                width: 100%;
                 justify-content: center;
+                margin: 10px 0;
+            }
+            .mobile-menu-btn {
+                display: block;
             }
             .hero {
-                padding: 140px 0 60px 0;
+                padding: 120px 0 50px 0;
             }
             .hero h1 {
-                font-size: 2.3em;
+                font-size: 2.5em;
             }
             .audience-content {
                 grid-template-columns: 1fr;
@@ -415,12 +506,21 @@
             .audience-section {
                 padding: 30px;
             }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2em;
+            }
             .features-grid {
                 grid-template-columns: 1fr;
             }
             .investor-btn {
                 padding: 8px 16px;
                 font-size: 0.9em;
+            }
+            .demo-switcher {
+                flex-wrap: wrap;
             }
         }
     </style>
@@ -431,24 +531,33 @@
         <div class="header-container">
             <a href="#" class="logo">
                 <img src="https://raw.githubusercontent.com/nyaganmaksimov-sys/cuim-presentation/897a692376cebc999053be78f051fb28b74a4364/images/logo.svg" alt="ЦУИМ" class="logo-img" onerror="this.style.display='none'">
-                <div class="logo-text">
-                    <h1>ЦУИМ</h1>
-                    <p>Локальная экосистема</p>
-                </div>
+                <div class="logo-text">ЦУИМ</div>
             </a>
-            <nav>
+
+            <button class="mobile-menu-btn">☰</button>
+
+            <nav class="main-nav">
+                <!-- Demo Sites Switcher -->
+                <div class="demo-switcher">
+                    <button class="demo-btn active">ЦУИМ Презентация</button>
+                    <button class="demo-btn">ЦУИМ Маркет</button>
+                    <button class="demo-btn">ЦУИМ Опт</button>
+                    <button class="demo-btn">ЦУИМ Объявления</button>
+                </div>
+
+                <!-- Main Navigation -->
                 <ul class="nav-menu">
+                    <li><a href="#about">О платформе</a></li>
                     <li><a href="#buyer" class="active">Покупателям</a></li>
                     <li><a href="#seller-retail">Продавцам</a></li>
                     <li><a href="#seller-wholesale">Оптовикам</a></li>
                     <li><a href="#courier">Курьерам</a></li>
-                    <li><a href="#about">О платформе</a></li>
-                    <li>
-                        <a href="business-plan.html" class="investor-btn">
-                            📊 Для инвесторов
-                        </a>
-                    </li>
                 </ul>
+
+                <!-- Investor Button -->
+                <a href="business-plan.html" class="investor-btn">
+                    📊 Для инвесторов
+                </a>
             </nav>
         </div>
     </header>
@@ -490,7 +599,7 @@
                             <li>Гарантия качества и возврата</li>
                         </ul>
                         <div style="margin-top: 30px;">
-                            <button class="demo-btn" onclick="showDemo('buyer')">Посмотреть демо-кабинет</button>
+                            <button class="demo-section-btn" onclick="showDemo('buyer')">Посмотреть демо-кабинет</button>
                         </div>
                     </div>
                     <div class="demo-preview">
@@ -526,7 +635,7 @@
                             <li>Маркетинговое продвижение</li>
                         </ul>
                         <div style="margin-top: 30px;">
-                            <button class="demo-btn" onclick="showDemo('seller-retail')">Посмотреть демо-кабинет</button>
+                            <button class="demo-section-btn" onclick="showDemo('seller-retail')">Посмотреть демо-кабинет</button>
                         </div>
                     </div>
                     <div class="demo-preview">
@@ -562,7 +671,7 @@
                             <li>Персональный менеджер</li>
                         </ul>
                         <div style="margin-top: 30px;">
-                            <button class="demo-btn" onclick="showDemo('seller-wholesale')">Посмотреть демо-кабинет</button>
+                            <button class="demo-section-btn" onclick="showDemo('seller-wholesale')">Посмотреть демо-кабинет</button>
                         </div>
                     </div>
                     <div class="demo-preview">
@@ -598,7 +707,7 @@
                             <li>Карьерный рост</li>
                         </ul>
                         <div style="margin-top: 30px;">
-                            <button class="demo-btn" onclick="showDemo('courier')">Посмотреть демо-приложение</button>
+                            <button class="demo-section-btn" onclick="showDemo('courier')">Посмотреть демо-приложение</button>
                         </div>
                     </div>
                     <div class="demo-preview">
@@ -661,17 +770,14 @@
         <div class="footer-container">
             <div class="logo" style="justify-content: center; margin-bottom: 30px;">
                 <img src="https://raw.githubusercontent.com/nyaganmaksimov-sys/cuim-presentation/897a692376cebc999053be78f051fb28b74a4364/images/logo.svg" alt="ЦУИМ" class="logo-img" onerror="this.style.display='none'">
-                <div class="logo-text">
-                    <h1>ЦУИМ</h1>
-                    <p>Локальная экосистема</p>
-                </div>
+                <div class="logo-text">ЦУИМ</div>
             </div>
             <div class="footer-links">
+                <a href="#about">О платформе</a>
                 <a href="#buyer">Покупателям</a>
                 <a href="#seller-retail">Продавцам</a>
                 <a href="#seller-wholesale">Оптовикам</a>
                 <a href="#courier">Курьерам</a>
-                <a href="#about">О платформе</a>
                 <a href="business-plan.html">Для инвесторов</a>
                 <a href="#">Контакты</a>
             </div>
@@ -680,6 +786,22 @@
     </footer>
 
     <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.main-nav').classList.toggle('active');
+        });
+
+        // Demo switcher functionality
+        document.querySelectorAll('.demo-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.demo-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                const demoName = this.textContent;
+                alert(`Переключение на демо-версию: ${demoName}\n\nВ реальной версии здесь будет переключение между демо-сайтами.`);
+            });
+        });
+
         // Smooth scroll for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -690,6 +812,8 @@
                         behavior: 'smooth',
                         block: 'start'
                     });
+                    // Close mobile menu if open
+                    document.querySelector('.main-nav').classList.remove('active');
                 }
             });
         });
@@ -755,13 +879,17 @@
             // Fallback for logo if SVG doesn't load
             const logoImg = document.querySelector('.logo-img');
             if (logoImg && logoImg.naturalHeight === 0) {
-                const logoText = document.querySelector('.logo');
-                logoText.innerHTML = `
-                    <div class="logo-text">
-                        <h1>ЦУИМ</h1>
-                        <p>Локальная экосистема</p>
-                    </div>
-                `;
+                const logos = document.querySelectorAll('.logo');
+                logos.forEach(logo => {
+                    logo.innerHTML = '<div class="logo-text">ЦУИМ</div>';
+                });
+            }
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.main-nav') && !e.target.closest('.mobile-menu-btn')) {
+                document.querySelector('.main-nav').classList.remove('active');
             }
         });
     </script>
