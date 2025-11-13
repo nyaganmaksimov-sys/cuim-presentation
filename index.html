@@ -805,6 +805,10 @@
                 margin-right: 0;
                 margin-bottom: 15px;
             }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
         }
         
         /* Дополнительные стили для графиков */
@@ -896,6 +900,7 @@
                 <li><a href="#market">Маркетплейс</a></li>
                 <li><a href="#opt">Оптовая платформа</a></li>
                 <li><a href="#ads">Доска объявлений</a></li>
+                <li><a href="#courier">Курьерская служба</a></li>
                 <li><a href="#finance">Финансы</a></li>
                 <li><a href="#contact">Контакты</a></li>
             </ul>
@@ -919,7 +924,7 @@
         <div class="container">
             <div class="section-title">
                 <h2>Наши проекты</h2>
-                <p>Три ключевых компонента экосистемы ЦУИМ, каждый из которых решает конкретные задачи малого бизнеса</p>
+                <p>Четыре ключевых компонента экосистемы ЦУИМ, каждый из которых решает конкретные задачи малого бизнеса</p>
             </div>
             <div class="projects-grid">
                 <div class="project-card fade-in">
@@ -939,6 +944,12 @@
                     <h3>Доска объявлений</h3>
                     <p>Бесплатная доска объявлений для частных лиц и самозанятых с премиум-размещением</p>
                     <a href="#ads" class="project-btn">Подробнее</a>
+                </div>
+                <div class="project-card fade-in">
+                    <div class="project-icon"><i class="fas fa-shipping-fast"></i></div>
+                    <h3>Курьерская служба</h3>
+                    <p>Собственная служба доставки для выполнения заказов с маркетплейса и оптовой платформы</p>
+                    <a href="#courier" class="project-btn">Подробнее</a>
                 </div>
             </div>
         </div>
@@ -1133,8 +1144,71 @@
         </div>
     </section>
 
+    <!-- Презентация Курьерской службы -->
+    <section id="courier">
+        <div class="container">
+            <div class="project-presentation fade-in">
+                <div class="project-header">
+                    <div class="project-logo">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <div class="project-info">
+                        <h3>ЦУИМ.Доставка</h3>
+                        <p>Курьерская служба для выполнения заказов с маркетплейса и оптовой платформы</p>
+                    </div>
+                </div>
+                
+                <div class="project-features">
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-truck"></i></div>
+                        <h4>Собственный флот</h4>
+                        <p>2 микроавтобуса и 5 курьеров для оперативной доставки</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-clock"></i></div>
+                        <h4>Доставка в день заказа</h4>
+                        <p>Быстрая обработка и выполнение заказов в течение дня</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <h4>Пункты выдачи</h4>
+                        <p>3-5 точек самовывоза в ключевых районах города</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-mobile-alt"></i></div>
+                        <h4>Отслеживание</h4>
+                        <p>Мобильное приложение для курьеров и отслеживание заказов</p>
+                    </div>
+                </div>
+                
+                <div class="finance-highlights">
+                    <div class="finance-card">
+                        <div class="finance-value">300-1 500 ₽</div>
+                        <div class="finance-label">Стоимость доставки</div>
+                    </div>
+                    <div class="finance-card">
+                        <div class="finance-value">2-5%</div>
+                        <div class="finance-label">Комиссия от продавца</div>
+                    </div>
+                    <div class="finance-card">
+                        <div class="finance-value">2</div>
+                        <div class="finance-label">Микроавтобуса</div>
+                    </div>
+                    <div class="finance-card">
+                        <div class="finance-value">5</div>
+                        <div class="finance-label">Курьеров</div>
+                    </div>
+                </div>
+                
+                <div class="project-cta">
+                    <p class="finance-label">Курьерская служба интегрирована с маркетплейсом и оптовой платформой</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Финансы -->
-    <section id="finance">
+    <section id="finance" style="background-color: var(--light);">
         <div class="container">
             <div class="section-title">
                 <h2>Финансовые показатели</h2>
@@ -1248,7 +1322,7 @@
     </section>
 
     <!-- Контакты -->
-    <section id="contact" style="background-color: var(--light);">
+    <section id="contact">
         <div class="container">
             <div class="section-title">
                 <h2>Обсудим инвестиции?</h2>
@@ -1303,13 +1377,14 @@
                         <li><a href="#market">Маркетплейс</a></li>
                         <li><a href="#opt">Оптовая платформа</a></li>
                         <li><a href="#ads">Доска объявлений</a></li>
-                        <li><a href="#finance">Финансы</a></li>
+                        <li><a href="#courier">Курьерская служба</a></li>
                     </ul>
                 </div>
                 <div class="footer-links">
                     <h3>Информация</h3>
                     <ul>
                         <li><a href="#projects">О проекте</a></li>
+                        <li><a href="#finance">Финансы</a></li>
                         <li><a href="#contact">Контакты</a></li>
                         <li><a href="#">Политика конфиденциальности</a></li>
                     </ul>
