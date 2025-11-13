@@ -247,7 +247,7 @@
             font-size: 1.1rem;
         }
         
-        /* Проекты - ИСПРАВЛЕННЫЙ КОД */
+        /* Проекты - УБРАН ПСЕВДОЭЛЕМЕНТ */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -268,28 +268,12 @@
             display: flex;
             flex-direction: column;
             height: 100%;
-        }
-        
-        .project-card:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 5px;
-            height: 100%;
-            background: var(--primary);
-            transition: var(--transition);
-            z-index: 1;
+            border-left: 5px solid var(--primary); /* Добавляем акцентную линию вместо псевдоэлемента */
         }
         
         .project-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
-        }
-        
-        .project-card:hover:before {
-            width: 100%;
-            opacity: 0.05; /* Уменьшаем прозрачность чтобы не перекрывать контент */
         }
         
         .project-icon {
@@ -298,8 +282,6 @@
             color: var(--primary);
             transition: var(--transition);
             flex-shrink: 0;
-            position: relative;
-            z-index: 2;
         }
         
         .project-card:hover .project-icon {
@@ -311,15 +293,11 @@
             color: var(--secondary);
             font-size: 1.4rem;
             flex-shrink: 0;
-            position: relative;
-            z-index: 2;
         }
         
         .project-card p {
             flex-grow: 1;
             margin-bottom: 20px;
-            position: relative;
-            z-index: 2;
         }
         
         .project-btn {
@@ -333,8 +311,6 @@
             transition: var(--transition);
             border: 2px solid var(--primary);
             flex-shrink: 0;
-            position: relative;
-            z-index: 3; /* Увеличиваем z-index чтобы кнопка была выше overlay */
         }
         
         .project-btn:hover {
@@ -342,6 +318,50 @@
             color: var(--primary);
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(255, 107, 0, 0.3);
+        }
+        
+        /* Демо секция */
+        .demo-section {
+            background: linear-gradient(135deg, var(--secondary), #002d6e);
+            color: white;
+            text-align: center;
+            padding: 80px 0;
+        }
+        
+        .demo-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .demo-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .demo-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .demo-btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: 2px solid var(--primary);
+            font-size: 1.1rem;
+        }
+        
+        .demo-btn:hover {
+            background: transparent;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 107, 0, 0.4);
         }
         
         /* Презентации проектов */
@@ -814,6 +834,7 @@
                 <li><a href="#opt">Оптовая платформа</a></li>
                 <li><a href="#ads">Доска объявлений</a></li>
                 <li><a href="#courier">Курьерская служба</a></li>
+                <li><a href="#demo">Демо</a></li>
                 <li><a href="#finance">Финансы</a></li>
                 <li><a href="#contact">Контакты</a></li>
             </ul>
@@ -868,7 +889,18 @@
         </div>
     </section>
 
-    <!-- Остальные секции остаются без изменений -->
+    <!-- Демо секция -->
+    <section id="demo" class="demo-section">
+        <div class="container demo-content fade-in">
+            <h2>Демо-версия личного кабинета</h2>
+            <p>Ознакомьтесь с функционалом платформы через демо-версию личного кабинета. Управляйте заказами, отслеживайте статистику и настройте свой магазин.</p>
+            <a href="https://nyaganmaksimov-sys.github.io/cuim/pages/cuim-dashboard.html" class="demo-btn" target="_blank">
+                <i class="fas fa-external-link-alt"></i> Открыть демо личного кабинета
+            </a>
+        </div>
+    </section>
+
+    <!-- Остальные секции (маркетплейс, опт, объявления, курьерская служба, финансы, контакты) -->
     <!-- ... -->
 
     <script>
@@ -926,7 +958,7 @@
             });
         }, observerOptions);
         
-        document.querySelectorAll('.project-card, .finance-card, .chart-container, .project-presentation, .contact-form').forEach(el => {
+        document.querySelectorAll('.project-card, .finance-card, .chart-container, .project-presentation, .contact-form, .demo-content').forEach(el => {
             observer.observe(el);
         });
         
