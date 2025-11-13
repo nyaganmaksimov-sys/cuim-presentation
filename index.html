@@ -3,931 +3,1466 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ЦУИМ - Локальная цифровая экосистема</title>
+    <title>ЦУИМ | Инвестиционная возможность</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --orange: #FF6B00;
-            --blue: #0047AB;
-            --light-blue: #e8f4ff;
-            --light-gray: #f8f9fa;
+            --primary: #FF6B00;
+            --primary-light: #FFE8DC;
+            --secondary: #0047AB;
+            --secondary-light: #E6EEFF;
+            --light: #f8f9fa;
             --dark: #333;
-            --white: #fff;
-            --green: #2e7d32;
-            --text-light: #666;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --success: #28a745;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
         }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+        
         body {
-            background-color: var(--white);
+            background-color: white;
             color: var(--dark);
             line-height: 1.6;
-            scroll-behavior: smooth;
+            overflow-x: hidden;
         }
-
-        /* Header & Navigation */
-        header {
-            background: var(--white);
-            color: var(--dark);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
-            border-bottom: 1px solid #eee;
-        }
-        .header-container {
-            max-width: 1400px;
+        
+        .container {
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
-            display: flex;
-            align-items: center;
-            height: 70px;
-            gap: 40px;
         }
-
-        /* Logo */
+        
+        /* Навигация */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
         .logo {
             display: flex;
             align-items: center;
-            gap: 12px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary);
             text-decoration: none;
-            color: var(--dark);
-            flex-shrink: 0;
         }
+        
         .logo-img {
             height: 40px;
-            width: auto;
+            margin-right: 10px;
         }
-        .logo-text {
-            font-weight: 700;
-            font-size: 1.4em;
-            color: var(--blue);
+        
+        .logo span {
+            color: var(--primary);
         }
-
-        /* Main Navigation */
-        .main-nav {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-            flex: 1;
+        
+        .logo-icon {
+            margin-right: 10px;
+            font-size: 1.8rem;
         }
-        .nav-menu {
+        
+        .nav-links {
             display: flex;
             list-style: none;
-            gap: 5px;
-            align-items: center;
         }
-        .nav-menu a {
+        
+        .nav-links li {
+            margin-left: 25px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
             color: var(--dark);
-            text-decoration: none;
             font-weight: 500;
-            padding: 8px 16px;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            font-size: 0.95em;
-            white-space: nowrap;
+            transition: var(--transition);
+            position: relative;
         }
-        .nav-menu a:hover {
-            background: var(--light-blue);
-            color: var(--blue);
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--primary);
+            transition: var(--transition);
         }
-        .nav-menu a.active {
-            background: var(--orange);
-            color: white;
+        
+        .nav-links a:hover {
+            color: var(--primary);
         }
-
-        /* Demo Sites Switcher */
-        .demo-switcher {
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        .platform-switcher {
             display: flex;
-            background: var(--light-gray);
-            border-radius: 8px;
-            padding: 3px;
-            border: 1px solid #e0e0e0;
-            flex-shrink: 0;
+            background: var(--light);
+            border-radius: 10px;
+            padding: 5px;
+            margin-left: 20px;
         }
-        .demo-btn {
-            padding: 6px 12px;
+        
+        .platform-btn {
+            padding: 8px 16px;
             border: none;
-            background: none;
-            border-radius: 6px;
+            background: transparent;
+            border-radius: 8px;
             font-weight: 500;
-            font-size: 0.8em;
             cursor: pointer;
-            transition: all 0.3s ease;
-            color: var(--text-light);
-            white-space: nowrap;
-        }
-        .demo-btn:hover {
-            background: rgba(255, 107, 0, 0.1);
-            color: var(--orange);
-        }
-        .demo-btn.active {
-            background: var(--orange);
-            color: white;
-        }
-
-        /* Investor Button */
-        .investor-btn {
-            background: linear-gradient(135deg, var(--orange), #e55a00);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-weight: 600;
+            transition: var(--transition);
+            color: var(--gray);
             text-decoration: none;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.9em;
-            white-space: nowrap;
-            flex-shrink: 0;
+            font-size: 0.9rem;
         }
-        .investor-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 107, 0, 0.3);
+        
+        .platform-btn:hover {
+            color: var(--primary);
         }
-
-        /* Mobile menu button */
+        
+        .platform-btn.active {
+            background: white;
+            color: var(--secondary);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
         .mobile-menu-btn {
             display: none;
             background: none;
             border: none;
-            font-size: 1.5em;
-            cursor: pointer;
+            font-size: 1.5rem;
             color: var(--dark);
+            cursor: pointer;
         }
-
-        /* Mobile Navigation */
-        .mobile-nav {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: white;
-            padding: 20px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            flex-direction: column;
-            gap: 15px;
-        }
-        .mobile-nav.active {
-            display: flex;
-        }
-        .mobile-nav .nav-menu {
-            flex-direction: column;
-            gap: 10px;
-            width: 100%;
-        }
-        .mobile-nav .nav-menu a {
-            padding: 12px 16px;
-            text-align: center;
-            border: 1px solid #f0f0f0;
-        }
-        .mobile-nav .demo-switcher {
-            width: 100%;
-            justify-content: center;
-            margin: 10px 0;
-        }
-
-        /* Hero Section */
+        
+        /* Герой секция */
         .hero {
-            background: linear-gradient(135deg, var(--light-blue), var(--white));
-            color: var(--dark);
-            padding: 140px 0 60px 0;
-            text-align: center;
-            margin-top: 70px;
-        }
-        .hero-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        .hero h1 {
-            font-size: 3.2em;
-            margin-bottom: 20px;
-            font-weight: 700;
-            color: var(--blue);
-        }
-        .hero p {
-            font-size: 1.3em;
-            margin-bottom: 30px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            color: var(--text-light);
-        }
-        .hero-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        .btn {
-            padding: 15px 30px;
-            border: none;
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            display: inline-block;
-            text-align: center;
-        }
-        .btn-primary {
-            background: var(--orange);
-            color: white;
-        }
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(255, 107, 0, 0.3);
-        }
-        .btn-secondary {
-            background: var(--blue);
-            color: white;
-        }
-        .btn-secondary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0, 71, 171, 0.3);
-        }
-
-        /* Sections */
-        section {
-            padding: 80px 0;
-        }
-        .section-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        h2 {
-            color: var(--blue);
-            font-size: 2.3em;
-            margin-bottom: 50px;
+            background: linear-gradient(135deg, rgba(255,107,0,0.05) 0%, rgba(0,71,171,0.05) 100%);
+            padding: 160px 0 100px;
             text-align: center;
             position: relative;
+            overflow: hidden;
         }
-        h2:after {
+        
+        .hero:before {
             content: '';
-            display: block;
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: var(--primary-light);
+            top: -150px;
+            right: -150px;
+            z-index: 0;
+        }
+        
+        .hero:after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: var(--secondary-light);
+            bottom: -100px;
+            left: -100px;
+            z-index: 0;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            color: var(--gray);
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(255, 107, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-button:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 107, 0, 0.4);
+        }
+        
+        .cta-button:hover:before {
+            left: 100%;
+        }
+        
+        /* Секции */
+        section {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
             width: 80px;
             height: 4px;
-            background: var(--orange);
-            margin: 15px auto;
+            background: var(--primary);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
             border-radius: 2px;
         }
-
-        /* Audience Sections */
-        .audience-section {
-            background: var(--white);
-            border-radius: 20px;
-            padding: 50px;
-            margin-bottom: 40px;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.06);
-            transition: transform 0.3s ease;
-            border: 1px solid #f0f0f0;
+        
+        .section-title p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 25px auto 0;
+            font-size: 1.1rem;
         }
-        .audience-section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-        }
-        .audience-header {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-        .audience-icon {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, var(--orange), var(--blue));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8em;
-            color: white;
-        }
-        .audience-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
-        }
-        .audience-features {
-            list-style: none;
-        }
-        .audience-features li {
-            padding: 12px 0;
-            border-bottom: 1px solid #f0f0f0;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            color: var(--text-light);
-        }
-        .audience-features li:before {
-            content: '✓';
-            color: var(--green);
-            font-weight: bold;
-            background: #e8f5e9;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-        .demo-preview {
-            background: var(--light-gray);
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            text-align: center;
-            border: 1px solid #e8e8e8;
-        }
-        .demo-image {
-            width: 100%;
-            height: 250px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 10px;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.1em;
-            font-style: italic;
-        }
-        .demo-section-btn {
-            background: var(--orange);
-            color: white;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 25px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .demo-section-btn:hover {
-            background: #e55a00;
-            transform: translateY(-2px);
-        }
-
-        /* Platform Features */
-        .features-grid {
+        
+        /* Компоненты проекта */
+        .components-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
-            margin-top: 50px;
         }
-        .feature-card {
-            background: var(--white);
-            padding: 40px 30px;
+        
+        .component-card {
+            background: white;
             border-radius: 15px;
+            padding: 35px 25px;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
             text-align: center;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
-            transition: transform 0.3s ease;
-            border: 1px solid #f0f0f0;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.03);
         }
-        .feature-card:hover {
+        
+        .component-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+        
+        .component-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
         }
-        .feature-icon {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, var(--orange), var(--blue));
+        
+        .component-card:hover:before {
+            width: 100%;
+            opacity: 0.1;
+        }
+        
+        .component-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+        
+        .component-card:hover .component-icon {
+            transform: scale(1.1);
+        }
+        
+        .component-card h3 {
+            margin-bottom: 15px;
+            color: var(--secondary);
+            font-size: 1.4rem;
+        }
+        
+        /* Финансовые показатели */
+        .finance-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        
+        .finance-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+        
+        .finance-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .finance-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .finance-label {
+            color: var(--gray);
+            font-size: 1rem;
+        }
+        
+        .chart-container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: var(--card-shadow);
+            margin-top: 30px;
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+        
+        .chart-title {
+            font-size: 1.3rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .chart-wrapper {
+            position: relative;
+            height: 300px;
+            width: 100%;
+        }
+        
+        /* Таблица рисков */
+        .risks-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: var(--card-shadow);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .risks-table th, .risks-table td {
+            padding: 15px 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .risks-table th {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            color: white;
+            font-weight: 600;
+        }
+        
+        .risks-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .risks-table tr:hover {
+            background-color: var(--light);
+        }
+        
+        .risk-level {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+        
+        .high {
+            background: #ffebee;
+            color: #b71c1c;
+        }
+        
+        .medium {
+            background: #fff3e0;
+            color: #e65100;
+        }
+        
+        .low {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+        
+        /* Дорожная карта */
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+            border-radius: 2px;
+        }
+        
+        .timeline-item {
+            padding: 15px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-content {
+            padding: 25px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .timeline-content:hover {
+            transform: translateY(-5px);
+        }
+        
+        .timeline-content:after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            top: 50%;
+            transform: translateY(-50%) rotate(45deg);
+            border-radius: 3px;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content:after {
+            right: -10px;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content:after {
+            left: -10px;
+        }
+        
+        .timeline-date {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .timeline-date i {
+            margin-right: 8px;
+        }
+        
+        /* Контактная форма */
+        .contact-form {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--secondary);
+        }
+        
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid var(--light-gray);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.2);
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: block;
+            margin: 0 auto;
+            font-size: 1rem;
+            box-shadow: 0 5px 15px rgba(255, 107, 0, 0.3);
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 107, 0, 0.4);
+        }
+        
+        /* Футер */
+        footer {
+            background: linear-gradient(135deg, var(--secondary), #002d6e);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-logo span {
+            color: var(--primary);
+        }
+        
+        .footer-links h3 {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-links h3:after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 3px;
+            background: var(--primary);
+            bottom: -8px;
+            left: 0;
+            border-radius: 2px;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.7);
+        }
+        
+        /* Анимации */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-content:after {
+                left: -10px !important;
+            }
+            
+            .platform-switcher {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                padding: 20px;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 10px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero {
+                padding: 140px 0 80px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            section {
+                padding: 70px 0;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+        
+        /* Дополнительные стили для графиков */
+        .scenario-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .scenario-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+        }
+        
+        .scenario-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .scenario-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .scenario-icon {
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 1.8em;
-            color: white;
+            margin-right: 15px;
+            font-size: 1.3rem;
         }
-        .feature-card h3 {
-            color: var(--blue);
-            margin-bottom: 15px;
+        
+        .optimistic .scenario-icon {
+            background: #e8f5e9;
+            color: #2e7d32;
         }
-        .feature-card p {
-            color: var(--text-light);
+        
+        .realistic .scenario-icon {
+            background: #e3f2fd;
+            color: #1565c0;
         }
-
-        /* CTA Section */
-        .cta-section {
-            background: linear-gradient(135deg, var(--light-blue), var(--white));
-            color: var(--dark);
-            text-align: center;
-            padding: 70px 0;
-            border-radius: 20px;
-            margin: 50px 0;
-            border: 1px solid #e8f4ff;
+        
+        .pessimistic .scenario-icon {
+            background: #ffebee;
+            color: #b71c1c;
         }
-        .cta-section h2 {
-            color: var(--blue);
+        
+        .scenario-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 0;
         }
-        .cta-section h2:after {
-            background: var(--orange);
+        
+        .scenario-details {
+            margin-top: 15px;
         }
-
-        /* Footer */
-        footer {
-            background: var(--light-gray);
-            color: var(--dark);
-            padding: 50px 0 20px;
-            text-align: center;
-            border-top: 1px solid #e8e8e8;
-        }
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        .footer-links {
+        
+        .metric {
             display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            padding-bottom: 8px;
+            border-bottom: 1px dashed var(--light-gray);
         }
-        .footer-links a {
-            color: var(--text-light);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        .footer-links a:hover {
-            color: var(--orange);
-        }
-
-        /* Background variations for sections */
-        .section-light {
-            background: var(--light-gray);
-        }
-        .section-white {
-            background: var(--white);
-        }
-
-        /* Responsive */
-        @media (max-width: 1200px) {
-            .header-container {
-                gap: 20px;
-            }
-            .nav-menu a {
-                padding: 8px 12px;
-                font-size: 0.9em;
-            }
-            .demo-btn {
-                padding: 6px 10px;
-                font-size: 0.75em;
-            }
-        }
-
-        @media (max-width: 968px) {
-            .main-nav {
-                display: none;
-            }
-            .mobile-menu-btn {
-                display: block;
-            }
-            .header-container {
-                justify-content: space-between;
-            }
-            .hero {
-                padding: 120px 0 50px 0;
-            }
-            .hero h1 {
-                font-size: 2.5em;
-            }
-            .audience-content {
-                grid-template-columns: 1fr;
-            }
-            .audience-section {
-                padding: 30px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.2em;
-            }
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
+        
+        .metric:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="header-container">
-            <!-- Logo -->
+    <!-- Навигация -->
+    <nav>
+        <div class="container nav-container">
             <a href="#" class="logo">
-                <svg class="logo-img" width="35" height="35" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="50" height="50" rx="10" fill="#0047AB"/>
-                    <path d="M15 15H35V35H15V15Z" fill="#FF6B00"/>
-                    <circle cx="25" cy="25" r="8" fill="white"/>
-                    <path d="M20 20L30 30M30 20L20 30" stroke="#0047AB" stroke-width="2"/>
-                </svg>
-                <div class="logo-text">ЦУИМ</div>
+                <img src="https://github.com/nyaganmaksimov-sys/cuim-presentation/blob/4faf5f196998e39bf5f71d27cb8865d9382fc8d3/images/logo.svg?raw=true" alt="ЦУИМ" class="logo-img">
             </a>
-
-            <!-- Main Navigation -->
-            <nav class="main-nav">
-                <ul class="nav-menu">
-                    <li><a href="#about">О платформе</a></li>
-                    <li><a href="#buyer" class="active">Покупателям</a></li>
-                    <li><a href="#seller-retail">Продавцам</a></li>
-                    <li><a href="#seller-wholesale">Оптовикам</a></li>
-                    <li><a href="#courier">Курьерам</a></li>
-                </ul>
-
-                <!-- Demo Sites Switcher -->
-                <div class="demo-switcher">
-                    <button class="demo-btn active">ЦУИМ Презентация</button>
-                    <button class="demo-btn">ЦУИМ Маркет</button>
-                    <button class="demo-btn">ЦУИМ Опт</button>
-                    <button class="demo-btn">ЦУИМ Объявления</button>
-                </div>
-
-                <!-- Investor Button -->
-                <a href="business-plan.html" class="investor-btn">
-                    📊 Для инвесторов
-                </a>
-            </nav>
-
-            <button class="mobile-menu-btn">☰</button>
-        </div>
-
-        <!-- Mobile Navigation -->
-        <div class="mobile-nav">
-            <ul class="nav-menu">
-                <li><a href="#about">О платформе</a></li>
-                <li><a href="#buyer" class="active">Покупателям</a></li>
-                <li><a href="#seller-retail">Продавцам</a></li>
-                <li><a href="#seller-wholesale">Оптовикам</a></li>
-                <li><a href="#courier">Курьерам</a></li>
+            <ul class="nav-links">
+                <li><a href="#problem">Проблема</a></li>
+                <li><a href="#solution">Решение</a></li>
+                <li><a href="#components">Компоненты</a></li>
+                <li><a href="#finance">Финансы</a></li>
+                <li><a href="#risks">Риски</a></li>
+                <li><a href="#roadmap">Дорожная карта</a></li>
+                <li><a href="#contact">Контакты</a></li>
             </ul>
-            <div class="demo-switcher">
-                <button class="demo-btn active">ЦУИМ Презентация</button>
-                <button class="demo-btn">ЦУИМ Маркет</button>
-                <button class="demo-btn">ЦУИМ Опт</button>
-                <button class="demo-btn">ЦУИМ Объявления</button>
+            <div class="platform-switcher">
+                <a href="https://nyaganmaksimov-sys.github.io/cuim-presentation/" class="platform-btn active">Презентация</a>
+                <a href="https://nyaganmaksimov-sys.github.io/cuim/pages/market.html" class="platform-btn">Маркет</a>
+                <a href="https://nyaganmaksimov-sys.github.io/cuim/pages/wholesale.html" class="platform-btn">Опт</a>
+                <a href="https://nyaganmaksimov-sys.github.io/cuim/pages/ads-board.html" class="platform-btn">Объявления</a>
             </div>
-            <a href="business-plan.html" class="investor-btn" style="justify-content: center;">
-                📊 Для инвесторов
-            </a>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
-    </header>
+    </nav>
 
-    <!-- Rest of the content remains exactly the same as before -->
-    <!-- Hero Section -->
+    <!-- Герой секция -->
     <section class="hero">
-        <div class="hero-container">
-            <h1>ЦУИМ — локальная цифровая экосистема</h1>
-            <p>Объединяем малый бизнес, производителей и покупателей в одном месте. Быстро, надежно, по-человечески.</p>
-            <div class="hero-buttons">
-                <a href="#buyer" class="btn btn-primary">Начать покупки</a>
-                <a href="#seller-retail" class="btn btn-secondary">Начать продавать</a>
-                <a href="business-plan.html" class="btn" style="background: transparent; border: 2px solid var(--blue); color: var(--blue);">Инвесторам</a>
-            </div>
+        <div class="container hero-content">
+            <h1 class="fade-in">ЦУИМ — локальная цифровая экосистема для малого бизнеса</h1>
+            <p class="fade-in">Объединяем производителей, ремесленников и покупателей в одном месте с собственной системой доставки</p>
+            <a href="#contact" class="cta-button fade-in">Обсудить инвестиции</a>
         </div>
     </section>
 
-    <!-- Buyer Section -->
-    <section id="buyer" class="section-light">
-        <div class="section-container">
-            <h2>Для покупателей</h2>
-            <div class="audience-section">
-                <div class="audience-header">
-                    <div class="audience-icon">🛒</div>
-                    <div>
-                        <h3 style="color: var(--blue); margin: 0; font-size: 1.8em;">ЦУИМ.Маркет</h3>
-                        <p style="color: var(--text-light); margin: 5px 0 0 0;">Покупайте у местных производителей</p>
-                    </div>
+    <!-- Проблема -->
+    <section id="problem">
+        <div class="container">
+            <div class="section-title">
+                <h2>Проблема рынка</h2>
+                <p>Малый бизнес и самозанятые сталкиваются с серьезными вызовами при выходе на онлайн-рынок</p>
+            </div>
+            <div class="components-grid">
+                <div class="component-card fade-in">
+                    <div class="component-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Высокие комиссии</h3>
+                    <p>Крупные маркетплейсы взимают до 25-30% с каждой продажи, что делает бизнес нерентабельным</p>
                 </div>
-                <div class="audience-content">
-                    <div>
-                        <h4 style="color: var(--orange); margin-bottom: 20px;">Почему покупать у нас выгодно?</h4>
-                        <ul class="audience-features">
-                            <li>Свежие товары от местных производителей</li>
-                            <li>Быстрая доставка в день заказа</li>
-                            <li>Прямой контакт с продавцами</li>
-                            <li>Уникальные handmade-товары</li>
-                            <li>Поддержка местного бизнеса</li>
-                            <li>Гарантия качества и возврата</li>
-                        </ul>
-                        <div style="margin-top: 30px;">
-                            <button class="demo-section-btn" onclick="showDemo('buyer')">Посмотреть демо-кабинет</button>
-                        </div>
-                    </div>
-                    <div class="demo-preview">
-                        <div class="demo-image">Демо-интерфейс покупателя</div>
-                        <p>Удобный поиск, быстрый заказ, отслеживание доставки</p>
-                    </div>
+                <div class="component-card fade-in">
+                    <div class="component-icon"><i class="fas fa-truck"></i></div>
+                    <h3>Сложности с доставкой</h3>
+                    <p>Отсутствие надежной и доступной локальной доставки для небольших партий товаров</p>
+                </div>
+                <div class="component-card fade-in">
+                    <div class="component-icon"><i class="fas fa-search"></i></div>
+                    <h3>Низкая видимость</h3>
+                    <p>Местные производители теряются среди тысяч предложений на федеральных площадках</p>
+                </div>
+                <div class="component-card fade-in">
+                    <div class="component-icon"><i class="fas fa-handshake"></i></div>
+                    <h3>Отсутствие доверия</h3>
+                    <p>Покупатели сомневаются в качестве товаров от неизвестных локальных продавцов</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Seller Retail Section -->
-    <section id="seller-retail" class="section-white">
-        <div class="section-container">
-            <h2>Для продавцов маркетплейса</h2>
-            <div class="audience-section">
-                <div class="audience-header">
-                    <div class="audience-icon">🏪</div>
-                    <div>
-                        <h3 style="color: var(--blue); margin: 0; font-size: 1.8em;">ЦУИМ.Маркет</h3>
-                        <p style="color: var(--text-light); margin: 5px 0 0 0;">Продавайте свои товары онлайн</p>
-                    </div>
-                </div>
-                <div class="audience-content">
-                    <div>
-                        <h4 style="color: var(--orange); margin-bottom: 20px;">Преимущества для продавцов</h4>
-                        <ul class="audience-features">
-                            <li>Низкая комиссия от 10%</li>
-                            <li>Готовая аудитория покупателей</li>
-                            <li>Встроенная система доставки</li>
-                            <li>Простой личный кабинет</li>
-                            <li>Поддержка 24/7</li>
-                            <li>Маркетинговое продвижение</li>
-                        </ul>
-                        <div style="margin-top: 30px;">
-                            <button class="demo-section-btn" onclick="showDemo('seller-retail')">Посмотреть демо-кабинет</button>
-                        </div>
-                    </div>
-                    <div class="demo-preview">
-                        <div class="demo-image">Демо-кабинет продавца</div>
-                        <p>Управление товарами, заказами и статистикой</p>
-                    </div>
-                </div>
+    <!-- Решение -->
+    <section id="solution" style="background-color: var(--light);">
+        <div class="container">
+            <div class="section-title">
+                <h2>Наше решение</h2>
+                <p>ЦУИМ создает локальную экосистему с четырьмя взаимосвязанными компонентами</p>
             </div>
-        </div>
-    </section>
-
-    <!-- Seller Wholesale Section -->
-    <section id="seller-wholesale" class="section-light">
-        <div class="section-container">
-            <h2>Для оптовых продавцов</h2>
-            <div class="audience-section">
-                <div class="audience-header">
-                    <div class="audience-icon">📦</div>
-                    <div>
-                        <h3 style="color: var(--blue); margin: 0; font-size: 1.8em;">ЦУИМ.Опт</h3>
-                        <p style="color: var(--text-light); margin: 5px 0 0 0;">B2B-платформа для оптовой торговли</p>
-                    </div>
+            <div class="components-grid">
+                <div class="component-card fade-in">
+                    <div class="component-icon"><i class="fas fa-shopping-cart"></i></div>
+                    <h3>Маркет</h3>
+                    <p>Розничный маркетплейс для местных производителей с комиссией 10-15%</p>
                 </div>
-                <div class="audience-content">
-                    <div>
-                        <h4 style="color: var(--orange); margin-bottom: 20px;">Возможности для оптовиков</h4>
-                        <ul class="audience-features">
-                            <li>Комиссия всего 5% от продаж</li>
-                            <li>Работа только с проверенными бизнесами</li>
-                            <li>Минимальный заказ от 5 000 рублей</li>
-                            <li>Собственная логистика для крупных партий</li>
-                            <li>Интеграция с системами учёта</li>
-                            <li>Персональный менеджер</li>
-                        </ul>
-                        <div style="margin-top: 30px;">
-                            <button class="demo-section-btn" onclick="showDemo('seller-wholesale')">Посмотреть демо-кабинет</button>
-                        </div>
-                    </div>
-                    <div class="demo-preview">
-                        <div class="demo-image">Демо-кабинет оптовика</div>
-                        <p>Управление крупными заказами и поставками</p>
-                    </div>
+                <div class="component-card fade-in">
+                    <div class="component-icon"><i class="fas fa-list-alt"></i></div>
+                    <h3>Объявления</h3>
+                    <p>Бесплатная доска объявлений для частных лиц и самозанятых</p>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Courier Section -->
-    <section id="courier" class="section-white">
-        <div class="section-container">
-            <h2>Для курьерской службы</h2>
-            <div class="audience-section">
-                <div class="audience-header">
-                    <div class="audience-icon">🚚</div>
-                    <div>
-                        <h3 style="color: var(--blue); margin: 0; font-size: 1.8em;">ЦУИМ.Доставка</h3>
-                        <p style="color: var(--text-light); margin: 5px 0 0 0;">Надёжная логистика для всех</p>
-                    </div>
+                <div class="component-card fade-in">
+                    <div class="component-icon"><i class="fas fa-boxes"></i></div>
+                    <h3>Опт</h3>
+                    <p>Площадка для оптовых закупок с минимальной партией от 5 000 руб</p>
                 </div>
-                <div class="audience-content">
-                    <div>
-                        <h4 style="color: var(--orange); margin-bottom: 20px;">Работа в нашей службе доставки</h4>
-                        <ul class="audience-features">
-                            <li>Стабильный поток заказов</li>
-                            <li>Гибкий график работы</li>
-                            <li>Поддержка мобильного приложения</li>
-                            <li>Прозрачная система оплаты</li>
-                            <li>Страхование и поддержка</li>
-                            <li>Карьерный рост</li>
-                        </ul>
-                        <div style="margin-top: 30px;">
-                            <button class="demo-section-btn" onclick="showDemo('courier')">Посмотреть демо-приложение</button>
-                        </div>
-                    </div>
-                    <div class="demo-preview">
-                        <div class="demo-image">Демо-приложение курьера</div>
-                        <p>Маршрутизация, навигация, управление доставками</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Platform Features -->
-    <section id="about" class="section-light">
-        <div class="section-container">
-            <h2>Возможности платформы</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🛍️</div>
-                    <h3>Маркетплейс</h3>
-                    <p>Продажа товаров местного производства с быстрой доставкой</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📋</div>
-                    <h3>Доска объявлений</h3>
-                    <p>Бесплатное размещение объявлений для частных лиц и бизнеса</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🏭</div>
-                    <h3>Оптовая торговля</h3>
-                    <p>B2B-платформа для поставщиков и розничных покупателей</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🚀</div>
+                <div class="component-card fade-in">
+                    <div class="component-icon"><i class="fas fa-shipping-fast"></i></div>
                     <h3>Доставка</h3>
-                    <p>Собственная курьерская служба с доставкой в день заказа</p>
+                    <p>Собственная курьерская служба для выполнения заказов</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="section-white">
-        <div class="section-container">
-            <div class="cta-section">
-                <h2>Готовы присоединиться?</h2>
-                <p style="font-size: 1.2em; margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">
-                    Станьте частью локальной экосистемы уже сегодня
-                </p>
-                <div class="hero-buttons">
-                    <a href="#buyer" class="btn btn-primary">Начать покупать</a>
-                    <a href="#seller-retail" class="btn btn-secondary">Начать продавать</a>
-                    <a href="business-plan.html" class="btn" style="background: transparent; border: 2px solid var(--blue); color: var(--blue);">Инвесторам</a>
+    <!-- Финансы -->
+    <section id="finance">
+        <div class="container">
+            <div class="section-title">
+                <h2>Финансовые показатели</h2>
+                <p>Прогноз на 12 месяцев для города Барнаул (реалистичный сценарий)</p>
+            </div>
+            
+            <div class="finance-highlights">
+                <div class="finance-card fade-in">
+                    <div class="finance-value">51.9M ₽</div>
+                    <div class="finance-label">Общий оборот за 12 мес</div>
+                </div>
+                <div class="finance-card fade-in">
+                    <div class="finance-value">1.98M ₽</div>
+                    <div class="finance-label">Общий доход</div>
+                </div>
+                <div class="finance-card fade-in">
+                    <div class="finance-value">120K ₽</div>
+                    <div class="finance-label">Чистая прибыль</div>
+                </div>
+                <div class="finance-card fade-in">
+                    <div class="finance-value">7.4%</div>
+                    <div class="finance-label">ROI</div>
+                </div>
+            </div>
+            
+            <div class="chart-container fade-in">
+                <h3 class="chart-title">Динамика прибыли по месяцам</h3>
+                <div class="chart-wrapper">
+                    <canvas id="profitChart"></canvas>
+                </div>
+            </div>
+            
+            <div class="chart-container fade-in">
+                <h3 class="chart-title">Структура дохода (месяц 12)</h3>
+                <div class="chart-wrapper">
+                    <canvas id="revenueChart"></canvas>
+                </div>
+            </div>
+            
+            <div class="scenario-cards">
+                <div class="scenario-card optimistic fade-in">
+                    <div class="scenario-header">
+                        <div class="scenario-icon">
+                            <i class="fas fa-arrow-up"></i>
+                        </div>
+                        <h3 class="scenario-title">Оптимистичный сценарий</h3>
+                    </div>
+                    <div class="scenario-details">
+                        <div class="metric">
+                            <span>Точка безубыточности:</span>
+                            <span>4 месяц</span>
+                        </div>
+                        <div class="metric">
+                            <span>Прибыль за год:</span>
+                            <span>106,500 ₽</span>
+                        </div>
+                        <div class="metric">
+                            <span>Рост оборота:</span>
+                            <span>+30%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="scenario-card realistic fade-in">
+                    <div class="scenario-header">
+                        <div class="scenario-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="scenario-title">Реалистичный сценарий</h3>
+                    </div>
+                    <div class="scenario-details">
+                        <div class="metric">
+                            <span>Точка безубыточности:</span>
+                            <span>6 месяц</span>
+                        </div>
+                        <div class="metric">
+                            <span>Прибыль за год:</span>
+                            <span>120,000 ₽</span>
+                        </div>
+                        <div class="metric">
+                            <span>Рост оборота:</span>
+                            <span>стандартный</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="scenario-card pessimistic fade-in">
+                    <div class="scenario-header">
+                        <div class="scenario-icon">
+                            <i class="fas fa-arrow-down"></i>
+                        </div>
+                        <h3 class="scenario-title">Пессимистичный сценарий</h3>
+                    </div>
+                    <div class="scenario-details">
+                        <div class="metric">
+                            <span>Точка безубыточности:</span>
+                            <span>9 месяц</span>
+                        </div>
+                        <div class="metric">
+                            <span>Прибыль за год:</span>
+                            <span>-18,500 ₽</span>
+                        </div>
+                        <div class="metric">
+                            <span>Рост оборота:</span>
+                            <span>-30%</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Риски -->
+    <section id="risks" style="background-color: var(--light);">
+        <div class="container">
+            <div class="section-title">
+                <h2>Анализ рисков</h2>
+                <p>Мы оценили основные риски и разработали стратегии их минимизации</p>
+            </div>
+            
+            <div class="chart-container fade-in">
+                <h3 class="chart-title">Вероятность и влияние рисков</h3>
+                <div class="chart-wrapper">
+                    <canvas id="risksChart"></canvas>
+                </div>
+            </div>
+            
+            <div class="chart-container fade-in">
+                <table class="risks-table">
+                    <thead>
+                        <tr>
+                            <th>Риск</th>
+                            <th>Уровень</th>
+                            <th>Вероятность</th>
+                            <th>Меры по снижению</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Низкий спрос на платформе</td>
+                            <td><span class="risk-level high">Высокий</span></td>
+                            <td>30%</td>
+                            <td>Активный маркетинг, лояльность, фокус на уникальных товарах</td>
+                        </tr>
+                        <tr>
+                            <td>Конкуренция от крупных маркетплейсов</td>
+                            <td><span class="risk-level medium">Средний</span></td>
+                            <td>40%</td>
+                            <td>Акцент на локальность, сервис, доверие</td>
+                        </tr>
+                        <tr>
+                            <td>Проблемы с логистикой и доставкой</td>
+                            <td><span class="risk-level medium">Средний</span></td>
+                            <td>25%</td>
+                            <td>Партнёрство с местными службами, обучение курьеров</td>
+                        </tr>
+                        <tr>
+                            <td>Сложности с оплатой/верификацией</td>
+                            <td><span class="risk-level low">Низкий</span></td>
+                            <td>10%</td>
+                            <td>Интеграция с проверенными платёжными системами</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Дорожная карта -->
+    <section id="roadmap">
+        <div class="container">
+            <div class="section-title">
+                <h2>Дорожная карта</h2>
+                <p>План развития проекта на ближайшие 12 месяцев</p>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item fade-in">
+                    <div class="timeline-content">
+                        <div class="timeline-date"><i class="far fa-calendar-alt"></i> Март 2026</div>
+                        <h3>Запуск MVP в Барнауле</h3>
+                        <p>Запуск минимально жизнеспособного продукта с основным функционалом</p>
+                    </div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-content">
+                        <div class="timeline-date"><i class="far fa-calendar-alt"></i> Апрель-Май 2026</div>
+                        <h3>Привлечение первых продавцов</h3>
+                        <p>Цель: 50 продавцов на маркетплейсе и оптовой платформе</p>
+                    </div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-content">
+                        <div class="timeline-date"><i class="far fa-calendar-alt"></i> Июнь 2026</div>
+                        <h3>Запуск пунктов выдачи</h3>
+                        <p>Открытие 2-3 пунктов самовывоза в ключевых районах города</p>
+                    </div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-content">
+                        <div class="timeline-date"><i class="far fa-calendar-alt"></i> Июль 2026</div>
+                        <h3>Масштабирование доставки</h3>
+                        <p>Найм 5 курьеров и закупка 2 микроавтобусов</p>
+                    </div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-content">
+                        <div class="timeline-date"><i class="far fa-calendar-alt"></i> Сентябрь 2026</div>
+                        <h3>Достижение безубыточности</h3>
+                        <p>План выхода на окупаемость операционных расходов</p>
+                    </div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-content">
+                        <div class="timeline-date"><i class="far fa-calendar-alt"></i> 2027</div>
+                        <h3>Запуск франшизы</h3>
+                        <p>Расширение в другие города по франчайзинговой модели</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section id="contact" style="background-color: var(--light);">
+        <div class="container">
+            <div class="section-title">
+                <h2>Обсудим инвестиции?</h2>
+                <p>Свяжитесь с нами для получения полной версии бизнес-плана и обсуждения условий</p>
+            </div>
+            
+            <div class="contact-form fade-in">
+                <form id="investmentForm">
+                    <div class="form-group">
+                        <label for="name">Ваше имя</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="company">Компания</label>
+                        <input type="text" id="company" name="company">
+                    </div>
+                    <div class="form-group">
+                        <label for="investment">Интересующий объем инвестиций</label>
+                        <select id="investment" name="investment">
+                            <option value="">Выберите вариант</option>
+                            <option value="1-3">1-3 млн руб</option>
+                            <option value="3-5">3-5 млн руб</option>
+                            <option value="5-10">5-10 млн руб</option>
+                            <option value="10+">Более 10 млн руб</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Сообщение</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Расскажите о ваших ожиданиях от инвестирования..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Отправить запрос</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
     <footer>
-        <div class="footer-container">
-            <div class="logo" style="justify-content: center; margin-bottom: 30px;">
-                <svg class="logo-img" width="40" height="40" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="50" height="50" rx="10" fill="#0047AB"/>
-                    <path d="M15 15H35V35H15V15Z" fill="#FF6B00"/>
-                    <circle cx="25" cy="25" r="8" fill="white"/>
-                    <path d="M20 20L30 30M30 20L20 30" stroke="#0047AB" stroke-width="2"/>
-                </svg>
-                <div class="logo-text">ЦУИМ</div>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <div class="footer-logo">ЦУИМ<span>.</span></div>
+                    <p>Локальная цифровая экосистема для малого бизнеса, объединяющая производителей и покупателей.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Разделы</h3>
+                    <ul>
+                        <li><a href="#problem">Проблема</a></li>
+                        <li><a href="#solution">Решение</a></li>
+                        <li><a href="#components">Компоненты</a></li>
+                        <li><a href="#finance">Финансы</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Информация</h3>
+                    <ul>
+                        <li><a href="#risks">Риски</a></li>
+                        <li><a href="#roadmap">Дорожная карта</a></li>
+                        <li><a href="#contact">Контакты</a></li>
+                        <li><a href="#">Политика конфиденциальности</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Контакты</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> invest@цуим.ру</li>
+                        <li><i class="fas fa-phone"></i> +7 (XXX) XXX-XX-XX</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Барнаул, Россия</li>
+                    </ul>
+                </div>
             </div>
-            <div class="footer-links">
-                <a href="#about">О платформе</a>
-                <a href="#buyer">Покупателям</a>
-                <a href="#seller-retail">Продавцам</a>
-                <a href="#seller-wholesale">Оптовикам</a>
-                <a href="#courier">Курьерам</a>
-                <a href="business-plan.html">Для инвесторов</a>
-                <a href="#">Контакты</a>
+            <div class="footer-bottom">
+                <p>© 2025 ЦУИМ. Все права защищены.</p>
             </div>
-            <p style="color: var(--text-light); margin-top: 30px;">&copy; 2025 ЦУИМ. Локальная цифровая экосистема</p>
         </div>
     </footer>
 
     <script>
-        // Mobile menu toggle
-        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
-            document.querySelector('.mobile-nav').classList.toggle('active');
-        });
-
-        // Demo switcher functionality
-        document.querySelectorAll('.demo-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.demo-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                
-                const demoName = this.textContent;
-                let url = '#';
-                switch(demoName) {
-                    case 'ЦУИМ Презентация':
-                        url = 'https://nyaganmaksimov-sys.github.io/cuim-presentation/';
-                        break;
-                    case 'ЦУИМ Маркет':
-                        url = 'https://nyaganmaksimov-sys.github.io/cuim/';
-                        break;
-                    case 'ЦУИМ Опт':
-                        url = 'https://nyaganmaksimov-sys.github.io/cuim-opt/';
-                        break;
-                    case 'ЦУИМ Объявления':
-                        url = 'https://nyaganmaksimov-sys.github.io/cuim-board/';
-                        break;
-                }
-                if (url !== '#') {
-                    window.open(url, '_blank');
-                }
-            });
-        });
-
-        // Smooth scroll for navigation links
+        // Плавная прокрутка для навигации
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
                     });
-                    // Close mobile menu if open
-                    document.querySelector('.mobile-nav').classList.remove('active');
                 }
             });
         });
-
-        // Update active navigation link on scroll
+        
+        // Обработка формы
+        document.getElementById('investmentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Спасибо за ваш интерес! Мы свяжемся с вами в ближайшее время.');
+            this.reset();
+        });
+        
+        // Изменение стиля навигации при прокрутке
         window.addEventListener('scroll', function() {
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-menu a');
-            
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (pageYOffset >= sectionTop - 100) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        // Demo showcase function
-        function showDemo(type) {
-            const demos = {
-                'buyer': 'Демо-кабинет покупателя',
-                'seller-retail': 'Демо-кабинет продавца маркетплейса',
-                'seller-wholesale': 'Демо-кабинет оптового продавца',
-                'courier': 'Демо-приложение курьера'
-            };
-            alert(`Запуск демо-режима: ${demos[type]}\n\nВ полной версии здесь будет открыт интерактивный демо-интерфейс.`);
-        }
-
-        // Add some interactive effects
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add fade-in animation to sections
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, observerOptions);
-
-            // Apply initial styles and observe sections
-            document.querySelectorAll('.audience-section, .feature-card').forEach(el => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(30px)';
-                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                observer.observe(el);
-            });
-        });
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('.mobile-nav') && !e.target.closest('.mobile-menu-btn')) {
-                document.querySelector('.mobile-nav').classList.remove('active');
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                nav.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.08)';
             }
+        });
+        
+        // Анимация появления элементов при скролле
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.component-card, .finance-card, .chart-container, .timeline-item, .contact-form, .scenario-card').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Графики
+        // График прибыли по месяцам
+        const profitCtx = document.getElementById('profitChart').getContext('2d');
+        const profitChart = new Chart(profitCtx, {
+            type: 'line',
+            data: {
+                labels: ['Месяц 1', 'Месяц 2', 'Месяц 3', 'Месяц 4', 'Месяц 5', 'Месяц 6', 'Месяц 7', 'Месяц 8', 'Месяц 9', 'Месяц 10', 'Месяц 11', 'Месяц 12'],
+                datasets: [
+                    {
+                        label: 'Доход',
+                        data: [75000, 100000, 130000, 160000, 195000, 230000, 265000, 300000, 335000, 370000, 405000, 440000],
+                        borderColor: '#0047AB',
+                        backgroundColor: 'rgba(0, 71, 171, 0.1)',
+                        tension: 0.3,
+                        fill: true
+                    },
+                    {
+                        label: 'Операционные расходы',
+                        data: [100000, 105000, 110000, 115000, 120000, 125000, 130000, 135000, 140000, 145000, 150000, 155000],
+                        borderColor: '#FF6B00',
+                        backgroundColor: 'rgba(255, 107, 0, 0.1)',
+                        tension: 0.3,
+                        fill: true
+                    },
+                    {
+                        label: 'Расходы на доставку',
+                        data: [50000, 60000, 70000, 80000, 90000, 100000, 110000, 120000, 130000, 140000, 150000, 160000],
+                        borderColor: '#6c757d',
+                        backgroundColor: 'rgba(108, 117, 125, 0.1)',
+                        tension: 0.3,
+                        fill: true
+                    },
+                    {
+                        label: 'Прибыль',
+                        data: [-75000, -65000, -50000, -35000, -15000, 5000, 25000, 45000, 65000, 85000, 105000, 125000],
+                        borderColor: '#28a745',
+                        backgroundColor: 'rgba(40, 167, 69, 0.1)',
+                        tension: 0.3,
+                        fill: true,
+                        borderDash: [5, 5]
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Тысячи рублей'
+                        }
+                    }
+                }
+            }
+        });
+        
+        // Круговая диаграмма структуры дохода
+        const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+        const revenueChart = new Chart(revenueCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Комиссии с продаж', 'Доставка', 'Премиум-размещение'],
+                datasets: [{
+                    data: [52, 31, 17],
+                    backgroundColor: [
+                        '#0047AB',
+                        '#FF6B00',
+                        '#28a745'
+                    ],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+        
+        // График рисков
+        const risksCtx = document.getElementById('risksChart').getContext('2d');
+        const risksChart = new Chart(risksCtx, {
+            type: 'scatter',
+            data: {
+                datasets: [
+                    {
+                        label: 'Низкий спрос',
+                        data: [{x: 30, y: 8}],
+                        backgroundColor: '#b71c1c',
+                        pointRadius: 10
+                    },
+                    {
+                        label: 'Конкуренция',
+                        data: [{x: 40, y: 6}],
+                        backgroundColor: '#e65100',
+                        pointRadius: 10
+                    },
+                    {
+                        label: 'Логистика',
+                        data: [{x: 25, y: 5}],
+                        backgroundColor: '#e65100',
+                        pointRadius: 10
+                    },
+                    {
+                        label: 'Оплата/верификация',
+                        data: [{x: 10, y: 3}],
+                        backgroundColor: '#2e7d32',
+                        pointRadius: 10
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return `${context.dataset.label}: Вероятность ${context.parsed.x}%, Влияние ${context.parsed.y}/10`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Вероятность (%)'
+                        },
+                        min: 0,
+                        max: 50
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Влияние (1-10)'
+                        },
+                        min: 0,
+                        max: 10
+                    }
+                }
+            }
+        });
+        
+        // Мобильное меню
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Закрытие мобильного меню при клике на ссылку
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    navLinks.classList.remove('active');
+                }
+            });
         });
     </script>
 </body>
