@@ -1495,7 +1495,7 @@
         <div class="container">
             <div class="section-title">
                 <h2>Финансовые показатели</h2>
-                <p>Прогноз на 12 месяцев для города Барнаул (реалистичный сценарий)</p>
+                <p>Обновлённый прогноз на 12 месяцев для города Барнаул (реалистичный сценарий)</p>
             </div>
             
             <div class="finance-highlights">
@@ -1504,15 +1504,15 @@
                     <div class="finance-label">Общий оборот за 12 мес</div>
                 </div>
                 <div class="finance-card fade-in">
-                    <div class="finance-value">1.98M ₽</div>
+                    <div class="finance-value">3.41M ₽</div>
                     <div class="finance-label">Общий доход</div>
                 </div>
                 <div class="finance-card fade-in">
-                    <div class="finance-value">120K ₽</div>
+                    <div class="finance-value">1.79M ₽</div>
                     <div class="finance-label">Чистая прибыль</div>
                 </div>
                 <div class="finance-card fade-in">
-                    <div class="finance-value">7.4%</div>
+                    <div class="finance-value">110.2%</div>
                     <div class="finance-label">ROI</div>
                 </div>
             </div>
@@ -1542,15 +1542,15 @@
                     <div class="scenario-details">
                         <div class="metric">
                             <span>Точка безубыточности:</span>
-                            <span>4 месяц</span>
+                            <span>3 месяц</span>
                         </div>
                         <div class="metric">
                             <span>Прибыль за год:</span>
-                            <span>106,500 ₽</span>
+                            <span>2 317 302 ₽</span>
                         </div>
                         <div class="metric">
-                            <span>Рост оборота:</span>
-                            <span>+30%</span>
+                            <span>Комиссия с розницы:</span>
+                            <span>15%</span>
                         </div>
                     </div>
                 </div>
@@ -1565,15 +1565,15 @@
                     <div class="scenario-details">
                         <div class="metric">
                             <span>Точка безубыточности:</span>
-                            <span>6 месяц</span>
+                            <span>4 месяц</span>
                         </div>
                         <div class="metric">
                             <span>Прибыль за год:</span>
-                            <span>120,000 ₽</span>
+                            <span>1 785 102 ₽</span>
                         </div>
                         <div class="metric">
-                            <span>Рост оборота:</span>
-                            <span>стандартный</span>
+                            <span>Комиссия с розницы:</span>
+                            <span>12%</span>
                         </div>
                     </div>
                 </div>
@@ -1588,15 +1588,15 @@
                     <div class="scenario-details">
                         <div class="metric">
                             <span>Точка безубыточности:</span>
-                            <span>9 месяц</span>
+                            <span>6 месяц</span>
                         </div>
                         <div class="metric">
                             <span>Прибыль за год:</span>
-                            <span>-18,500 ₽</span>
+                            <span>1 430 302 ₽</span>
                         </div>
                         <div class="metric">
-                            <span>Рост оборота:</span>
-                            <span>-30%</span>
+                            <span>Комиссия с розницы:</span>
+                            <span>10%</span>
                         </div>
                     </div>
                 </div>
@@ -1895,8 +1895,8 @@
                 labels: ['Месяц 1', 'Месяц 2', 'Месяц 3', 'Месяц 4', 'Месяц 5', 'Месяц 6', 'Месяц 7', 'Месяц 8', 'Месяц 9', 'Месяц 10', 'Месяц 11', 'Месяц 12'],
                 datasets: [
                     {
-                        label: 'Доход',
-                        data: [75000, 100000, 130000, 160000, 195000, 230000, 265000, 300000, 335000, 370000, 405000, 440000],
+                        label: 'Общий доход',
+                        data: [190000, 223046, 268146, 329980, 384285, 460842, 593865, 680662, 759124, 873491, 988302, 1126167],
                         borderColor: '#0047AB',
                         backgroundColor: 'rgba(0, 71, 171, 0.1)',
                         tension: 0.3,
@@ -1904,23 +1904,15 @@
                     },
                     {
                         label: 'Операционные расходы',
-                        data: [100000, 105000, 110000, 115000, 120000, 125000, 130000, 135000, 140000, 145000, 150000, 155000],
+                        data: [150000, 165000, 180000, 195000, 210000, 225000, 240000, 255000, 270000, 285000, 300000, 315000],
                         borderColor: '#FF6B00',
                         backgroundColor: 'rgba(255, 107, 0, 0.1)',
                         tension: 0.3,
                         fill: true
                     },
                     {
-                        label: 'Расходы на доставку',
-                        data: [50000, 60000, 70000, 80000, 90000, 100000, 110000, 120000, 130000, 140000, 150000, 160000],
-                        borderColor: '#6c757d',
-                        backgroundColor: 'rgba(108, 117, 125, 0.1)',
-                        tension: 0.3,
-                        fill: true
-                    },
-                    {
-                        label: 'Прибыль',
-                        data: [-75000, -65000, -50000, -35000, -15000, 5000, 25000, 45000, 65000, 85000, 105000, 125000],
+                        label: 'Чистая прибыль',
+                        data: [-60000, -40954, -10855, 34980, 54285, 76842, 101865, 123662, 159124, 193491, 228302, 276167],
                         borderColor: '#28a745',
                         backgroundColor: 'rgba(40, 167, 69, 0.1)',
                         tension: 0.3,
@@ -1958,13 +1950,14 @@
         const revenueChart = new Chart(revenueCtx, {
             type: 'doughnut',
             data: {
-                labels: ['Комиссии с продаж', 'Доставка', 'Премиум-размещение'],
+                labels: ['Комиссии с продаж', 'Доставка', 'Доска объявлений', 'Премиум-подписки'],
                 datasets: [{
-                    data: [52, 31, 17],
+                    data: [410000, 254334, 138333, 13500],
                     backgroundColor: [
                         '#0047AB',
                         '#FF6B00',
-                        '#28a745'
+                        '#28a745',
+                        '#6f42c1'
                     ],
                     borderWidth: 0
                 }]
