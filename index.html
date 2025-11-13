@@ -517,7 +517,7 @@
             width: 100%;
         }
         
-        /* Таблица рисков */
+        /* Таблица рисков - ИСПРАВЛЕНА АДАПТИВНОСТЬ */
         .risks-table {
             width: 100%;
             border-collapse: collapse;
@@ -1054,6 +1054,19 @@
                 height: 250px;
             }
             
+            /* АДАПТИВНАЯ ТАБЛИЦА РИСКОВ */
+            .risks-table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            
+            .risks-table th,
+            .risks-table td {
+                padding: 12px 15px;
+                font-size: 0.9rem;
+            }
+            
             .contact-form {
                 padding: 20px;
             }
@@ -1071,6 +1084,23 @@
             
             .scenario-cards {
                 grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            /* ДОПОЛНИТЕЛЬНАЯ АДАПТАЦИЯ ТАБЛИЦЫ ДЛЯ ОЧЕНЬ МАЛЕНЬКИХ ЭКРАНОВ */
+            .risks-table {
+                font-size: 0.8rem;
+            }
+            
+            .risks-table th,
+            .risks-table td {
+                padding: 10px 12px;
+            }
+            
+            .risk-level {
+                font-size: 0.7rem;
+                padding: 4px 8px;
             }
         }
         
@@ -1115,6 +1145,13 @@
             .project-btn {
                 padding: 10px 20px;
                 font-size: 0.9rem;
+            }
+            
+            /* АДАПТАЦИЯ ТАБЛИЦЫ ДЛЯ ОЧЕНЬ МАЛЕНЬКИХ ЭКРАНОВ */
+            .risks-table th,
+            .risks-table td {
+                padding: 8px 10px;
+                font-size: 0.75rem;
             }
         }
     </style>
@@ -1216,7 +1253,7 @@
                     <div class="feature-card">
                         <div class="feature-icon"><i class="fas fa-shipping-fast"></i></div>
                         <h4>Быстрая доставка</h4>
-                        <p>Собственная курьерская служба с доставка в день заказа</p>
+                        <p>Собственная курьерская служба с доставкой в день заказа</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
@@ -1759,7 +1796,7 @@
     </button>
 
     <script>
-        // Мобильное меню - ДОБАВЛЕН ОБРАБОТЧИК
+        // Мобильное меню
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
         const navLinks = document.querySelector('.nav-links');
         
