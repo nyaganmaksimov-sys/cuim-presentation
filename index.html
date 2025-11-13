@@ -344,24 +344,43 @@
             opacity: 0.9;
         }
         
+        .demo-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
         .demo-btn {
             display: inline-block;
             background: var(--primary);
             color: white;
-            padding: 15px 35px;
+            padding: 15px 30px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
             transition: var(--transition);
             border: 2px solid var(--primary);
-            font-size: 1.1rem;
+            font-size: 1rem;
+            min-width: 200px;
+        }
+        
+        .demo-btn.secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
         }
         
         .demo-btn:hover {
-            background: transparent;
-            color: white;
+            background: white;
+            color: var(--secondary);
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(255, 107, 0, 0.4);
+            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
+        }
+        
+        .demo-btn.secondary:hover {
+            background: white;
+            color: var(--secondary);
         }
         
         /* Презентации проектов */
@@ -892,6 +911,16 @@
             .timeline-content:after {
                 left: -10px !important;
             }
+            
+            .demo-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .demo-btn {
+                width: 100%;
+                max-width: 300px;
+            }
         }
         
         @media (max-width: 768px) {
@@ -1374,11 +1403,16 @@
     <!-- Демо секция -->
     <section id="demo" class="demo-section">
         <div class="container demo-content fade-in">
-            <h2>Демо-версия личного кабинета</h2>
-            <p>Ознакомьтесь с функционалом платформы через демо-версию личного кабинета. Управляйте заказами, отслеживайте статистику и настройте свой магазин.</p>
-            <a href="https://nyaganmaksimov-sys.github.io/cuim/pages/cuim-dashboard.html" class="demo-btn" target="_blank">
-                <i class="fas fa-external-link-alt"></i> Открыть демо личного кабинета
-            </a>
+            <h2>Демо-версии платформ</h2>
+            <p>Ознакомьтесь с функционалом наших платформ через демо-версии. Управляйте заказами, отслеживайте статистику и оцените удобство интерфейсов.</p>
+            <div class="demo-buttons">
+                <a href="https://nyaganmaksimov-sys.github.io/cuim/pages/cuim-dashboard.html" class="demo-btn" target="_blank">
+                    <i class="fas fa-tachometer-alt"></i> Демо личного кабинета
+                </a>
+                <a href="https://github.com/nyaganmaksimov-sys/invest-cabinet/blob/d1b9ed605d151483e7e44aa6cfdaec9695165111/login.html" class="demo-btn secondary" target="_blank">
+                    <i class="fas fa-chart-line"></i> Демо кабинета инвестора
+                </a>
+            </div>
         </div>
     </section>
 
