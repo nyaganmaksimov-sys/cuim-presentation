@@ -1128,6 +1128,10 @@
             </a>
             <ul class="nav-links">
                 <li><a href="#projects">Проекты</a></li>
+                <li><a href="#market">Маркетплейс</a></li>
+                <li><a href="#opt">Оптовая платформа</a></li>
+                <li><a href="#ads">Доска объявлений</a></li>
+                <li><a href="#courier">Курьерская служба</a></li>
                 <li><a href="#demo">Демо</a></li>
                 <li><a href="#finance">Финансы</a></li>
                 <li><a href="#roadmap">Дорожная карта</a></li>
@@ -1212,7 +1216,7 @@
                     <div class="feature-card">
                         <div class="feature-icon"><i class="fas fa-shipping-fast"></i></div>
                         <h4>Быстрая доставка</h4>
-                        <p>Собственная курьерская служба с доставкой в день заказа</p>
+                        <p>Собственная курьерская служба с доставка в день заказа</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
@@ -1755,6 +1759,21 @@
     </button>
 
     <script>
+        // Мобильное меню - ДОБАВЛЕН ОБРАБОТЧИК
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Закрытие мобильного меню при клике вне меню
+        document.addEventListener('click', (e) => {
+            if (!navLinks.contains(e.target) && !mobileMenuBtn.contains(e.target) && window.innerWidth <= 768) {
+                navLinks.classList.remove('active');
+            }
+        });
+
         // Плавная прокрутка для навигации
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -1772,7 +1791,7 @@
                     
                     // Закрытие мобильного меню после клика
                     if (window.innerWidth <= 768) {
-                        document.querySelector('.nav-links').classList.remove('active');
+                        navLinks.classList.remove('active');
                     }
                 }
             });
@@ -1811,21 +1830,6 @@
         
         document.querySelectorAll('.project-card, .finance-card, .chart-container, .project-presentation, .contact-form, .demo-content, .scenario-card, .timeline-item').forEach(el => {
             observer.observe(el);
-        });
-        
-        // Мобильное меню
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const navLinks = document.querySelector('.nav-links');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-        
-        // Закрытие мобильного меню при клике вне меню
-        document.addEventListener('click', (e) => {
-            if (!navLinks.contains(e.target) && !mobileMenuBtn.contains(e.target) && window.innerWidth <= 768) {
-                navLinks.classList.remove('active');
-            }
         });
 
         // КНОПКА "НАВЕРХ" - НОВАЯ ФУНКЦИОНАЛЬНОСТЬ
